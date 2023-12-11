@@ -2,9 +2,9 @@
 
 Java based renting database system for cycles in a city area (represented as an x-y plane).
 
-## **Structure of records**:
+## **Structure of records** : 
 
-### **Structure of cycleObject Array**:
+### **Structure of cycleObject Array** : 
 
 > [{cycleObject},{cycleObject},...]
 
@@ -12,7 +12,7 @@ Java based renting database system for cycles in a city area (represented as an 
 
 > cycle { id: +ve int, x: +ve int, y: +ve int, hoursRented: +ve int, isRented: boolean }
 
-## **Structure of user Object**:
+## **Structure of user Object** : 
 
 > User { x: +ve int, y: +ve int, hoursRented: +ve int }
 
@@ -29,7 +29,7 @@ Invalid command will return -
 
 > Error 404: Command Not Found.
 
-**Format**: _shorthand-longhand_
+**Format** :  _shorthand-longhand_
 
 ### First args:
 
