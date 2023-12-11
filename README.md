@@ -92,19 +92,19 @@ u s l⏎
 50⏎
 30
 
-## **Commands:**
+## **Commands :**
 
 ### Format:
 
 - **Command** `(arg-name: expected type and/or value range (default value))`
   - _what it does._
 
-### **Help:**
+### **Help :**
 
 - **help** `()`
   - _returns a list of all commands._
 
-### **On start:**
+### **On start :**
 
 - **intial user location** `(x-value: +ve int (0), y-value: +ve int(0))`
 
@@ -113,7 +113,7 @@ u s l⏎
 - **rent per hour** `(rent per hour: +ve non-zero float (0.5))`
   - _asks for rent per hour rate_
 
-### **Adding/deleting records:**
+### **Adding/deleting records :**
 
 - **add cycle** `(x-value: +ve int (0), y-value: +ve int(0), hoursRented: +ve double (0))`
 
@@ -130,7 +130,7 @@ u s l⏎
 - **delete cycle area** `(/ same as 1st above/ , /same as 2nd above/ , x range: +ve int(0), y range: +ve int (x))`
   - _delete records in a rectangle of sides (x range*2)-1,(y range*2 -1) range centered at x,y_
 
-### **Updating records:**
+### **Updating records :**
 
 - **update cycle** `(cycleId: +ve int (required), range end cycleId : +ve int >= cycleId (cycleId), x-value: +ve int (unchanged), y-value: +ve int(unchanged), mark as not rented? : boolean (false))`
 
@@ -147,7 +147,7 @@ u s l⏎
 - **update user location** `(x-value: +ve int (0), y-value: +ve int(0))`
   - _as named._
 
-### **Requesting records:**
+### **Requesting records :**
 
 - **get user** `(ratePerHour in euro : +ve non-zero float (0.5))`
 
@@ -184,7 +184,7 @@ u s l⏎
 - **get cycle proximity** `(range x: +ve int (5), range y: +ve int (x), include isRented : boolean (false))`
   - _returns records by distance from user._
 
-### **Renting:**
+### **Renting :**
 
 - **rent cycle** `(cycleId: +ve int (required), number of cycles : +ve non-zero int (1), hours to rent: +ve non-zero int < 25 (1), rate per hour: +ve float (0.5))`
 
