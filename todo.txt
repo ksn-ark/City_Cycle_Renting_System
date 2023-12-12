@@ -1,0 +1,5 @@
+do init functions
+do update
+do get
+do rent
+do commit & rollback
