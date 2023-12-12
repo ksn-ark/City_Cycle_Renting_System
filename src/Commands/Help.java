@@ -51,8 +51,7 @@ public class Help {
                 "Commands in add+delete module: (short hand)\n" +
                 "   1. add cycle (a c)\n" +
                 "   2. delete cycle id (d c i)\n" +
-                "   3. delete cycle location (d c l)\n" +
-                "   4. delete cycle area (d c a)\n\n");
+                "   3. delete cycle area (d c a)\n\n");
         System.out.print("Enter selection: ");
         String userInput = scnr.nextLine();
         switch (userInput) {
@@ -60,7 +59,7 @@ public class Help {
             case "add cycle":
             case "a c":
                 System.out.println(
-                        "add cycle (x-value: +ve int (0), y-value: +ve int(0), hoursRented: +ve double (0), isRented: boolean (false))\r\n"
+                        "add cycle (x-value: +ve int (0), y-value: +ve int(0), hoursRented: +ve int (0), isRented: boolean (false))\r\n"
                                 + //
                                 "\r\n" + //
                                 "adds record with given values.");
@@ -68,27 +67,18 @@ public class Help {
             case "2":
             case "delete cycle id":
             case "d c":
-                System.out.println("delete cycle id (cycleId1: +ve int(required), cyceId2:+ve int (cycleId1))\r\n" + //
+                System.out.println("delete cycle id (cycleId: +ve int(required), Range:+ve int (0))\r\n" + //
                         "\r\n" + //
-                        "deletes cycles in inclusive range(Id1, Id2), confirms number of successfully deleted records.");
+                        "deletes cycles in inclusive range(Id, Id+Range), confirms number of successfully deleted records.");
                 break;
             case "3":
-            case "delete cycle location":
-            case "d c l":
-                System.err.println(
-                        "delete cycle location (x-value: +ve int(0), y-value: +ve (0), arSide: +ve non-zero int(1), arSide2: +ve non-zero int(arSide))\r\n"
-                                + //
-                                "\r\n" + //
-                                "delete records in rectangle of length = arSide, breadth = arSide2 & bottom-left-corner= x,y.");
-                break;
-            case "4":
             case "delete cycle area":
             case "d c a":
                 System.out.println(
-                        "delete cycle area (/ same as 1st above/ , /same as 2nd above/ , x range: +ve int(0), y range: +ve int (x))\r\n"
+                        "delete cycle area (x-value: +ve int(0), y-value: +ve (0), arSide: +ve non-zero int(1), arSide2: +ve non-zero int(arSide))\r\n"
                                 + //
                                 "\r\n" + //
-                                "delete records in a rectangle of sides (x range2)-1,(y range2 -1) range centered at x,y");
+                                "delete records in rectangular area of length = arSide, breadth = arSide2 & bottom-left-corner= x,y.");
                 break;
             default:
                 System.out.println("exited");

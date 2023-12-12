@@ -50,7 +50,9 @@ public class Main {
             } catch (Exception error) {
                 System.out.println("Invalid file");
                 System.out.print("Enter valid csv file path or enter 'exit' to exit : ");
-                filePath = scnr.nextLine();
+                if (scnr.nextLine() != "") {
+                    filePath = scnr.nextLine();
+                }
                 if (filePath.equals("exit")) {
                     break;
                 }

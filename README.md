@@ -115,20 +115,17 @@ u s l⏎
 
 ### **Adding/deleting records :**
 
-- **add cycle** `(x-value: +ve int (0), y-value: +ve int(0), hoursRented: +ve double (0), isRented: boolean (false))`
+- **add cycle** `(x-value: +ve int (0), y-value: +ve int(0), hoursRented: +ve int (0), isRented: boolean (false))`
 
   - _adds record with given values._
 
-- **delete cycle id** `(cycleId1: +ve int(required), cyceId2:+ve int (cycleId1))`
+- **delete cycle id** `(cycleId1: +ve int(required), Range:+ve int (0))`
 
-  - _deletes cycles in inclusive range(Id1, Id2), confirms number of successfully deleted records._
+  - _deletes cycles in inclusive range(Id, Id+Range), confirms number of successfully deleted records._
 
-- **delete cycle location** `(x-value: +ve int(0), y-value: +ve (0), arSide: +ve non-zero int(1), arSide2: +ve non-zero int(arSide))`
+- **delete cycle area** `(x-value: +ve int(0), y-value: +ve (0), arSide: +ve non-zero int(1), arSide2: +ve non-zero int(arSide))`
 
-  - _delete records in rectangle of length = arSide, breadth = arSide2 & bottom-left-corner= x,y._
-
-- **delete cycle area** `(/ same as 1st above/ , /same as 2nd above/ , x range: +ve int(0), y range: +ve int (x))`
-  - _delete records in a rectangle of sides (x range*2)-1,(y range*2 -1) range centered at x,y_
+  - _delete records in rectangular area of length = arSide, breadth = arSide2 & bottom-left-corner= x,y._
 
 ### **Updating records :**
 

@@ -18,7 +18,6 @@ public class IntValueInput {
             String inputString = scnr.nextLine();
 
             try {
-
                 if (inputString.equals("")) {
                     if (defaultIntValues[valueCount] < 0) {
                         valueArgs[valueCount] = defaultIntValues[valueCount + defaultIntValues[valueCount]];
@@ -34,6 +33,9 @@ public class IntValueInput {
                     System.out.println(inputString + " is outside the expected integer range for arg");
                     throw new InvalidInputException(inputString);
                 }
+            } catch (IndexOutOfBoundsException e) {
+                System.err.println("value is a required argument");
+                throw e;
             } catch (NumberFormatException e) {
                 System.out.println(inputString + " is an invalid integer arg");
                 throw new InvalidInputException(inputString);

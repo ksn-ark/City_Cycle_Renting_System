@@ -7,7 +7,7 @@ import Data.ReplaceData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteCycleLocation {
+public class DeleteCycleArea {
 
     public static void execute(List<Cycle> cycles, String filePath) {
 
@@ -47,9 +47,9 @@ public class DeleteCycleLocation {
             System.out.println("\n" + deletedCount + " Matching Records Successfully deleted");
 
         } catch (InvalidInputException e) {
-            System.out.println("\nCycle not deleted\n");
+            System.out.println("\nInvalid Arguments, Command Failed\n");
             System.out.println(
-                    "Expected args x-value: +ve int (0), y-value: +ve int(0), hoursRented: +ve double (0), isRented: boolean (false)");
+                    "x-value: +ve int(0), y-value: +ve (0), arSide: +ve non-zero int(1), arSide2: +ve non-zero int(arSide)");
             return;
         } catch (Exception e) {
             e.printStackTrace();

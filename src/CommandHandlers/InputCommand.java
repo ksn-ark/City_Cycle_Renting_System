@@ -29,9 +29,13 @@ public class InputCommand {
                     case "c":
                     case "cycle":
                         switch (inputStrings[2]) {
-                            case "location":
-                            case "l":
-                                DeleteCycleLocation.execute(cycles, filePath);
+                            case "a":
+                            case "area":
+                                DeleteCycleArea.execute(cycles, filePath);
+                                break;
+                            case "i":
+                            case "id":
+                                DeleteCycleId.execute(cycles, filePath);
                                 break;
                             default:
                                 error404();
