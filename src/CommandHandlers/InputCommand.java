@@ -5,17 +5,17 @@ import Commands.Adddel.*;
 import Commands.Get.*;
 import Data.Cycle;
 import java.util.*;
-import org.apache.commons.*;
 
 public class InputCommand {
 
-    public static void handler(String[] inpuStrings, int topId, List<Cycle> cycles, String filePath) {
-        switch (inpuStrings[0]) {
+    public static void handler(String[] inputStrings, int topId, List<Cycle> cycles, String filePath) {
+
+        switch (inputStrings[0]) {
             case "a":
             case "add":
-                switch (inpuStrings[1]) {
-                    case "cycle":
+                switch (inputStrings[1]) {
                     case "c":
+                    case "cycle":
                         AddCycle.execute(topId + 1, filePath);
                         break;
                     default:
@@ -23,11 +23,32 @@ public class InputCommand {
                         break;
                 }
                 break;
+            case "d":
+            case "delete":
+                switch (inputStrings[1]) {
+                    case "c":
+                    case "cycle":
+                        switch (inputStrings[2]) {
+                            case "location":
+                            case "l":
+                                DeleteCycleLocation.execute(cycles, filePath);
+                                break;
+                            default:
+                                error404();
+                                break;
+                        }
+                        break;
+
+                    default:
+                        error404();
+                        break;
+                }
+                break;
             case "g":
             case "get":
-                switch (inpuStrings[1]) {
-                    case "cycle":
+                switch (inputStrings[1]) {
                     case "c":
+                    case "cycle":
                         GetCycle.execute(cycles);
                         break;
                     default:

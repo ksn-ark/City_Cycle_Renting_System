@@ -3,7 +3,6 @@ package Commands.Get;
 import Data.Cycle;
 
 import java.util.List;
-import org.apache.commons.*;
 
 public class GetCycle {
 

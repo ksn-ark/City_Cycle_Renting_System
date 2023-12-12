@@ -6,13 +6,14 @@ public class FloatValueInput {
 
     static Scanner scnr = new Scanner(System.in);
 
-    public static float[] parser(int maxArgs, float defaultValues[], RangeCheck range[]) throws InvalidInputException {
+    public static float[] parser(int maxArgs, String[] argNames, float defaultValues[], RangeCheck range[])
+            throws InvalidInputException {
 
         float valueArgs[] = new float[maxArgs];
 
         for (int valueCount = 0; valueCount < maxArgs; valueCount++) {
 
-            System.out.print("enter value ");
+            System.out.print(argNames[valueCount]);
 
             String inputString = scnr.nextLine();
 

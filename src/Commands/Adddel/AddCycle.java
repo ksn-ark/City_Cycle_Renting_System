@@ -1,37 +1,49 @@
 package Commands.Adddel;
 
 import Data.Cycle;
-import ValueInputHandlers.*;;
+import ValueInputHandlers.*;
 
 public class AddCycle {
 
     public static void execute(int id, String filePath) {
 
         int intArgCount = 3;
-        int booleanArgCount = 1;
-        int defaultIntValues[] = { 0, 0, 0 };
-        RangeCheck range[] = { new RangeCheck(0), new RangeCheck(0), new RangeCheck(0), new RangeCheck(0) };
+        String intArgNames[] = { "x-value: ", "y-value: ", "hoursRented: " };
 
+        int booleanArgCount = 1;
+        String booleanArgNames[] = { "isRented:  " };
+
+        int defaultIntValues[] = { 0, 0, 0 };
         boolean defaultBooleanValues[] = { false };
 
+        RangeCheck intRanges[] = { new RangeCheck(0), new RangeCheck(0), new RangeCheck(0), new RangeCheck(0) };
+
         try {
-            int valueArgs[] = IntValueInput.parser(intArgCount, defaultIntValues, range);
-            boolean booleanArgs[] = BoolValueInput.parser(booleanArgCount, defaultBooleanValues);
-            int x = valueArgs[0];
-            int y = valueArgs[1];
-            int hoursRented = valueArgs[2];
+            int intArgs[] = IntValueInput.parser(intArgCount, intArgNames, defaultIntValues, intRanges);
+            boolean booleanArgs[] = BoolValueInput.parser(booleanArgCount, booleanArgNames, defaultBooleanValues);
+
+            int x = intArgs[0];
+            int y = intArgs[1];
+            int hoursRented = intArgs[2];
             boolean isRented = booleanArgs[0];
+
             Cycle cycle = new Cycle(id, x, y, hoursRented, isRented);
-            System.out.println(cycle.toString());
+
+            System.out.println("\n" + cycle.toString());
+
             cycle.add(filePath);
+            cycle.addTopId(filePath, id);
 
         } catch (InvalidInputException e) {
-            System.out.println("Cycle not added");
+            System.out.println("\nCycle not added\n");
             System.out.println(
                     "Expected args x-value: +ve int (0), y-value: +ve int(0), hoursRented: +ve double (0), isRented: boolean (false)");
             return;
+        } catch (Exception e) {
+            System.out.println("Error invalid csv file");
+            return;
         }
 
-        System.out.println("Cycle Added");
+        System.out.println("\nCycle Added");
     }
 }

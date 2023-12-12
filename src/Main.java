@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import org.apache.commons.*;
 import com.opencsv.*;
 
 import CommandHandlers.InputCommand;
@@ -17,14 +16,32 @@ public class Main {
             try {
 
                 CSVReader reader = new CSVReader(new FileReader(filePath));
+
                 List<String[]> rawRecords = reader.readAll();
+
                 int topId = Integer.parseInt(rawRecords.get(0)[0]);
 
                 List<Cycle> Cycles = readCycles(rawRecords);
 
-                System.out.print("Enter Command :");
+                System.out.print("\nEnter Command :");
 
-                String[] commandInputs = scnr.nextLine().split(" ");
+                List<String> commandInputList = new ArrayList<>();
+
+                String[] userInput = scnr.nextLine().split(" ");
+
+                for (String string : userInput) {
+                    commandInputList.add(string);
+                }
+
+                while (commandInputList.size() < 3) {
+                    commandInputList.add("");
+                }
+
+                String[] commandInputs = new String[3];
+
+                for (int i = 0; i < commandInputs.length; i++) {
+                    commandInputs[i] = commandInputList.get(i);
+                }
 
                 InputCommand.handler(commandInputs, topId, Cycles, filePath);
 

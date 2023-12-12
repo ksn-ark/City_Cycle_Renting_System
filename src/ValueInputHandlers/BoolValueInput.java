@@ -6,7 +6,8 @@ public class BoolValueInput {
 
     static Scanner scnr = new Scanner(System.in);
 
-    public static boolean[] parser(int maxArgs, boolean defaultArgValues[]) throws InvalidInputException {
+    public static boolean[] parser(int maxArgs, String[] argNames, boolean defaultArgValues[]) throws
+            InvalidInputException {
 
         boolean valueArgs[] = new boolean[maxArgs];
 
@@ -14,7 +15,7 @@ public class BoolValueInput {
 
             boolean value;
 
-            System.out.print("enter value ");
+            System.out.print(argNames[valueCount]);
 
             String inputString = scnr.nextLine().toLowerCase();
 

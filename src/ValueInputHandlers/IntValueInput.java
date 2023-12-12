@@ -6,19 +6,24 @@ public class IntValueInput {
 
     static Scanner scnr = new Scanner(System.in);
 
-    public static int[] parser(int maxArgs, int defaultIntValues[], RangeCheck range[]) throws InvalidInputException {
+    public static int[] parser(int maxArgs, String[] argNames, int defaultIntValues[], RangeCheck range[])
+            throws InvalidInputException {
 
         int valueArgs[] = new int[maxArgs];
 
         for (int valueCount = 0; valueCount < maxArgs; valueCount++) {
 
-            System.out.print("enter value ");
+            System.out.print(argNames[valueCount]);
 
             String inputString = scnr.nextLine();
 
             try {
 
                 if (inputString.equals("")) {
+                    if (defaultIntValues[valueCount] < 0) {
+                        valueArgs[valueCount] = defaultIntValues[valueCount + defaultIntValues[valueCount]];
+                        continue;
+                    }
                     valueArgs[valueCount] = defaultIntValues[valueCount];
                     continue;
                 }

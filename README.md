@@ -119,11 +119,11 @@ u s l⏎
 
   - _adds record with given values._
 
-- **delete cycle** `(cycleId1: +ve int(required), cyceId2:+ve int (cycleId1))`
+- **delete cycle id** `(cycleId1: +ve int(required), cyceId2:+ve int (cycleId1))`
 
-  - _deletes cycles in inclusive range(Id1, Id2), confirms number of successfully deleted records, if cycleId1 is returned empty the command below is implemented._
+  - _deletes cycles in inclusive range(Id1, Id2), confirms number of successfully deleted records._
 
-- **delete cycle** `(x-value: +ve int(0), y-value: +ve (0), arSide: +ve int(1), arSide2: +ve int(arSide))`
+- **delete cycle location** `(x-value: +ve int(0), y-value: +ve (0), arSide: +ve non-zero int(1), arSide2: +ve non-zero int(arSide))`
 
   - _delete records in rectangle of length = arSide, breadth = arSide2 & bottom-left-corner= x,y._
 
