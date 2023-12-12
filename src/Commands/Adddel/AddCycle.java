@@ -1,23 +1,29 @@
-package Commands;
+package Commands.Adddel;
 
 import Data.Cycle;
-
-import InputHandlers.*;;
+import ValueInputHandlers.*;;
 
 public class AddCycle {
 
-    public static void execute(int topId) {
+    public static void execute(int id, String filePath) {
 
         int intArgCount = 3;
         int booleanArgCount = 1;
         int defaultIntValues[] = { 0, 0, 0 };
+        RangeCheck range[] = { new RangeCheck(0), new RangeCheck(0), new RangeCheck(0), new RangeCheck(0) };
+
         boolean defaultBooleanValues[] = { false };
 
         try {
-            int valueArgs[] = IntValueInput.parser(intArgCount, defaultIntValues);
+            int valueArgs[] = IntValueInput.parser(intArgCount, defaultIntValues, range);
             boolean booleanArgs[] = BoolValueInput.parser(booleanArgCount, defaultBooleanValues);
-            Cycle cycle = new Cycle(valueArgs, booleanArgs, topId);
+            int x = valueArgs[0];
+            int y = valueArgs[1];
+            int hoursRented = valueArgs[2];
+            boolean isRented = booleanArgs[0];
+            Cycle cycle = new Cycle(id, x, y, hoursRented, isRented);
             System.out.println(cycle.toString());
+            cycle.add(filePath);
 
         } catch (InvalidInputException e) {
             System.out.println("Cycle not added");

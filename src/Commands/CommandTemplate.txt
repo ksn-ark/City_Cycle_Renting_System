@@ -1,0 +1,11 @@
+                /*
+                 * int topId;
+                 * 
+                 * while (true) {
+                 * System.out.println("Enter Command :");
+                 * String inputString = scnr.nextLine();
+                 * if (inputString.equals("add cycle")) {
+                 * AddCycle.execute(topId);
+                 * }
+                 * }
+                 */

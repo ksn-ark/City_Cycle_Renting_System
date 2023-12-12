@@ -145,7 +145,7 @@ u s l⏎
   - _updates the rented status of all rented cycles in inclusive range to false_
 
 - **update user location** `(x-value: +ve int (0), y-value: +ve int(0))`
-  - _as named._
+  - _updates user location._
 
 ### **Requesting records :**
 
@@ -163,7 +163,7 @@ u s l⏎
 
 - **get user bill** `(ratePerHour in euro : +ve non-zero float (0.5))`
 
-  - _returns user total spending_
+  - _returns user total spending (in euro)_
 
 - **get cycle** `()`
 
@@ -186,17 +186,17 @@ u s l⏎
 
 ### **Renting :**
 
-- **rent cycle** `(cycleId: +ve int (required), number of cycles : +ve non-zero int (1), hours to rent: +ve non-zero int < 25 (1), rate per hour: +ve float (0.5))`
+- **rent cycle** `(cycleId: +ve int (required), number of cycles : +ve non-zero int (1), hours to rent: +ve non-zero int <= 24 (1), rate per hour: +ve float (0.5))`
 
   - _rents every available cycle with cycleId >= given id till required number of cycles are marked for rent. if not enough, available cycles are marked for rent. bill is calculated, confirmation is asked_
 
-- **rent cycle location** `(number of cycles : +ve nono-zero int (1), hours to rent: +ve non-zero int < 25 (1), x-value: +ve int(0), y-value: +ve (0), rate per hour: +ve float (0.5))`
+- **rent cycle location** `(number of cycles : +ve nono-zero int (1), hours to rent: +ve non-zero int <= 24 (1), x-value: +ve int(0), y-value: +ve (0), rate per hour: +ve float (0.5))`
 
   - _rents available cycles by location, if enough cycles, calculates bill and asks for confirmation, if not enough cycles presents invoice for max cycles available & asks for confirmation, if more cycles than needed at location lowest id's are rented_
 
-- **rent cycle proximity** `(number of cycles : +ve non-zero int (1), hours to rent: +ve non-zero int < 25 (1), range x: +ve int (5), range y: +ve int (5), rate per hour: +ve float (0.5))`
+- **rent cycle proximity** `(number of cycles : +ve non-zero int (1), hours to rent: +ve non-zero int <= 24 (1), range x: +ve int (5), range y: +ve int (5), rate per hour: +ve float (0.5))`
 
   - _rents available cycles by proximity to user location, handles excess, matching number and scarcity of cycles as in previous command_
 
-- **rent cycle area** `(number of cycles : +ve non-zero int (1), hours to rent: +ve non-zero int < 25 (1), x-value: +ve int(0), y-value: +ve (0), range x: +ve int (5), range y: +ve int (5), rate per hour: +ve float (0.5))`
+- **rent cycle area** `(number of cycles : +ve non-zero int (1), hours to rent: +ve non-zero int <= 24 (1), x-value: +ve int(0), y-value: +ve (0), range x: +ve int (5), range y: +ve int (5), rate per hour: +ve float (0.5))`
   - _rents available cycles by proximity to given location, handles excess, matching number & scarcity of cycles as in previous command_

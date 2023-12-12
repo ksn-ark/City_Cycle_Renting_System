@@ -1,4 +1,4 @@
-package InputHandlers;
+package ValueInputHandlers;
 
 public class InvalidInputException extends Exception {
     public InvalidInputException(String message) {

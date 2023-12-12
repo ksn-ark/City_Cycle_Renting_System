@@ -1,4 +1,4 @@
-package InputHandlers;
+package ValueInputHandlers;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ public class IntValueInput {
 
     static Scanner scnr = new Scanner(System.in);
 
-    public static int[] parser(int maxArgs, int defaultIntValues[]) throws InvalidInputException {
+    public static int[] parser(int maxArgs, int defaultIntValues[], RangeCheck range[]) throws InvalidInputException {
 
         int valueArgs[] = new int[maxArgs];
 
@@ -25,7 +25,7 @@ public class IntValueInput {
 
                 valueArgs[valueCount] = Integer.parseInt(inputString);
 
-                if (valueArgs[valueCount] < 0) {
+                if (!range[valueCount].intCheck(valueArgs[valueCount])) {
                     System.out.println(inputString + " is outside the expected integer range for arg");
                     throw new InvalidInputException(inputString);
                 }

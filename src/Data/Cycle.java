@@ -1,5 +1,10 @@
 package Data;
 
+import com.opencsv.CSVWriter;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Cycle {
 
     int id;
@@ -10,12 +15,12 @@ public class Cycle {
 
     static String[] properties = { "id", "x", "y", "hoursRented" };
 
-    public Cycle(int valueArgs[], boolean booleanArgs[], int id) {
+    public Cycle(int id, int x, int y, int hoursRented, boolean isRented) {
         this.id = id;
-        this.x = valueArgs[0];
-        this.y = valueArgs[1];
-        this.hoursRented = valueArgs[2];
-        this.isRented = booleanArgs[0];
+        this.x = x;
+        this.y = y;
+        this.hoursRented = hoursRented;
+        this.isRented = isRented;
     }
 
     public String toString() {
@@ -24,4 +29,14 @@ public class Cycle {
         return output;
     }
 
+    public void add(String filePath) {
+
+        try (CSVWriter writer = new CSVWriter(new FileWriter(filePath, true))) {
+            String[] cyclecsv = { Integer.toString(id), Integer.toString(x), Integer.toString(y),
+                    Integer.toString(hoursRented), Boolean.toString(isRented) };
+            writer.writeNext(cyclecsv);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

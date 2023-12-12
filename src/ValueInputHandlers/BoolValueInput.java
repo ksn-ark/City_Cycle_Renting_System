@@ -1,4 +1,4 @@
-package InputHandlers;
+package ValueInputHandlers;
 
 import java.util.Scanner;
 
