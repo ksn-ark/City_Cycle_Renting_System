@@ -1,15 +1,18 @@
 package Commands.Adddel;
 
 import ValueInputHandlers.*;
-import Data.Cycle;
-import Data.ReplaceData;
+import Data.*;
+import Commands.Command;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteCycleArea {
+public class DeleteCycleArea implements Command {
 
-    public static void execute(List<Cycle> cycles, String filePath) {
+    public void execute(AppData data) {
+
+        List<Cycle> cycles = data.getCycles();
+        String filePath = data.getfilePath();
 
         int intArgCount = 4;
         String intArgNames[] = { "x-value: ", "y-value: ", "arSide-value: ", "arSide2-value: " };

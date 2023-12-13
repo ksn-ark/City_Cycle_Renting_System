@@ -1,11 +1,16 @@
 package Commands.Adddel;
 
+import Commands.Command;
+import Data.AppData;
 import Data.Cycle;
 import ValueInputHandlers.*;
 
-public class AddCycle {
+public class AddCycle implements Command {
 
-    public static void execute(int id, String filePath) {
+    public void execute(AppData app) {
+
+        int id = app.getTopID();
+        String filePath = app.getfilePath();
 
         int intArgCount = 3;
         String intArgNames[] = { "x-value: ", "y-value: ", "hoursRented: " };

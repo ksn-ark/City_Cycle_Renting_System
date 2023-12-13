@@ -2,10 +2,12 @@ package Commands;
 
 import java.util.Scanner;
 
-public class Help {
+import Data.AppData;
+
+public class Help implements Command {
     static Scanner scnr = new Scanner(System.in);
 
-    public static void execute() {
+    public void execute(AppData data) {
         System.out.print("Select an option by entering the number or module name [enter anything else to exit] :\n" +
                 "   Command Modules:\n" +
                 "       1. add+delete commands\n" +

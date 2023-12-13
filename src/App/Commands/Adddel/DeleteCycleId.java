@@ -1,14 +1,21 @@
 package Commands.Adddel;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import Data.Cycle;
-import Data.ReplaceData;
+import Commands.Command;
+
+import Data.*;
+
 import ValueInputHandlers.*;
 
-public class DeleteCycleId {
-    public static void execute(List<Cycle> cycles, String filePath) throws IndexOutOfBoundsException {
+public class DeleteCycleId implements Command {
+
+    public void execute(AppData data) {
+
+        List<Cycle> cycles = data.getCycles();
+        String filePath = data.getfilePath();
 
         int intArgCount = 2;
         String intArgNames[] = { "Cycle Id: ", "Range: " };

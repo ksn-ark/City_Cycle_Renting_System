@@ -71,28 +71,6 @@ public class Cycle {
         }
     }
 
-    public void replace(List<Cycle> cycles, String filePath) throws Exception {
-        try {
-
-            CSVReader reader = new CSVReader(new FileReader(filePath));
-            String[] header = reader.readNext();
-
-            System.out.println(header);
-
-            CSVWriter writer = new CSVWriter(new FileWriter(filePath));
-
-            writer.writeNext(header);
-            writer.close();
-
-            for (Cycle cycle : cycles) {
-                cycle.add(filePath);
-            }
-
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
     public int[] getIntValues() {
 
         int intValues[] = { id, x, y, hoursRented };

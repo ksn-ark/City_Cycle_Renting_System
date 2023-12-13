@@ -6,8 +6,8 @@ public class BoolValueInput {
 
     static Scanner scnr = new Scanner(System.in);
 
-    public static boolean[] parser(int maxArgs, String[] argNames, boolean defaultArgValues[]) throws
-            InvalidInputException {
+    public static boolean[] parser(int maxArgs, String[] argNames, boolean defaultArgValues[])
+            throws InvalidInputException {
 
         boolean valueArgs[] = new boolean[maxArgs];
 

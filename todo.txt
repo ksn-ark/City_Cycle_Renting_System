@@ -1,5 +1,25 @@
-do init functions
+restructure help & command handler
 do update
 do get
 do rent
 do commit & rollback
+
+
+
+                List<String> commandInputList = new ArrayList<>();
+
+                String[] userInput = scnr.nextLine().split(" ");
+
+                for (String string : userInput) {
+                    commandInputList.add(string);
+                }
+
+                while (commandInputList.size() < 3) {
+                    commandInputList.add("");
+                }
+
+                String[] commandInputs = new String[3];
+
+                for (int i = 0; i < commandInputs.length; i++) {
+                    commandInputs[i] = commandInputList.get(i);
+                }
