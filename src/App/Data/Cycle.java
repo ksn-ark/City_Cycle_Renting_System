@@ -24,7 +24,7 @@ public class Cycle {
     }
 
     public String toString() {
-        String output = "id : " + id + "\nx-value : " + x + "\ny-value : " + y + "\nHoursRented : " + hoursRented
+        String output = "\nid : " + id + "\nx-value : " + x + "\ny-value : " + y + "\nHours Rented : " + hoursRented
                 + "\nRented Status : " + isRented;
         return output;
     }
@@ -81,5 +81,25 @@ public class Cycle {
     public boolean[] getBoolValues() {
         boolean booleanValues[] = { isRented };
         return booleanValues;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getHoursRented() {
+        return hoursRented;
+    }
+
+    public boolean getIsRented() {
+        return isRented;
     }
 }

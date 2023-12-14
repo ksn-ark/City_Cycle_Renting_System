@@ -1,34 +1,40 @@
 package Commands.Adddel;
 
-import ValueInputHandlers.*;
 import Data.*;
-import Commands.Command;
+import InputHandler.*;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+
+import Commands.Command;
 
 public class DeleteCycleArea implements Command {
+
+    static Map<String, Object[]> commandArgs = new LinkedHashMap<>() {
+        {
+            put("x-value", new Object[] { (Integer) 0, new RangeCheck(0) });
+            put("y-value", new Object[] { (Integer) 0, new RangeCheck(0) });
+            put("arSide-Value", new Object[] { (Integer) 1, new RangeCheck(1) });
+            put("arSide2-Value", new Object[] { "arSide-Value", new RangeCheck(1) });
+        }
+    };
 
     public void execute(AppData data) {
 
         List<Cycle> cycles = data.getCycles();
         String filePath = data.getfilePath();
 
-        int intArgCount = 4;
-        String intArgNames[] = { "x-value: ", "y-value: ", "arSide-value: ", "arSide2-value: " };
-        int defaultIntValues[] = { 0, 0, 1, -1 };
-
-        RangeCheck intRanges[] = { new RangeCheck(0), new RangeCheck(0), new RangeCheck(1), new RangeCheck(1) };
-
         int deletedCount = 0;
 
         try {
-            int intArgs[] = IntValueInput.parser(intArgCount, intArgNames, defaultIntValues, intRanges);
+            commandArgs = Input.getCommandArgs(commandArgs);
 
-            int x = intArgs[0];
-            int y = intArgs[1];
-            int arSide1 = intArgs[2];
-            int arSide2 = intArgs[3];
+            int x = (Integer) commandArgs.get("x-value")[0];
+            int y = (Integer) commandArgs.get("y-value")[0];
+            int arSide1 = (Integer) commandArgs.get("arSide-Value")[0];
+            int arSide2 = (Integer) commandArgs.get("arSide2-Value")[0];
 
             List<Cycle> modifiedCycles = new ArrayList<>();
 
@@ -46,13 +52,14 @@ public class DeleteCycleArea implements Command {
             }
 
             ReplaceData.replace(modifiedCycles, filePath);
+            data.updateCycles(modifiedCycles);
 
             System.out.println("\n" + deletedCount + " Matching Records Successfully deleted");
 
         } catch (InvalidInputException e) {
-            System.out.println("\nInvalid Arguments, Command Failed\n");
-            System.out.println(
-                    "x-value: +ve int(0), y-value: +ve (0), arSide: +ve non-zero int(1), arSide2: +ve non-zero int(arSide)");
+            System.out.println("\nFailure, Invalid inputs\n");
+            Command cmd = new DeleteCycleArea();
+            AppData.getCommandArgDetails(cmd);
             return;
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,4 +67,32 @@ public class DeleteCycleArea implements Command {
         }
     }
 
+    int inModuleId = 3;
+    String commandName = "delete cycle area";
+    String commandShort = "d c a";
+    String commandInfo = "delete records in rectangular area of length = arSide, breadth = arSide2 & bottom-left-corner= x,y.";
+
+    public int getCommandId() {
+        return inModuleId;
+    }
+
+    public String getCommandIdString() {
+        return Integer.toString(inModuleId);
+    }
+
+    public String getCommandName() {
+        return commandName;
+    }
+
+    public String getCommandShort() {
+        return commandShort;
+    }
+
+    public String getCommandInfo() {
+        return commandInfo;
+    }
+
+    public Map<String, Object[]> getCommandArgs() {
+        return commandArgs;
+    }
 }

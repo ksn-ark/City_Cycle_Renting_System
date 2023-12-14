@@ -1,59 +1,57 @@
-package Commands.Adddel;
 
-import java.util.ArrayList;
+package Commands.Get;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import Commands.Command;
-import Data.*;
-import InputHandler.*;
+import Data.AppData;
+import Data.Cycle;
+import InputHandler.Input;
+import InputHandler.InvalidInputException;
+import InputHandler.RangeCheck;
 
-public class DeleteCycleId implements Command {
+public class GetCycleId implements Command {
 
-    static Map<String, Object[]> commandArgs = new LinkedHashMap<>() {
+    Map<String, Object[]> commandArgs = new LinkedHashMap<>() {
         {
             put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
-            put("Range", new Object[] { (Integer) 0, new RangeCheck(0) });
+            put("Range", new Object[] { 0, new RangeCheck(0) });
+            put("Include rented?", new Object[] { false });
         }
     };
-
-    int deletedCount = 0;
 
     public void execute(AppData data) {
 
         List<Cycle> cycles = data.getCycles();
-        String filePath = data.getfilePath();
 
         try {
 
             commandArgs = Input.getCommandArgs(commandArgs);
 
-            int id = (Integer) commandArgs.get("Cycle Id")[0];
+            int cycleId = (Integer) commandArgs.get("Cycle Id")[0];
+
             int range = (Integer) commandArgs.get("Range")[0];
 
-            List<Cycle> modifiedCycles = new ArrayList<>();
+            boolean includeRented = (Boolean) commandArgs.get("Include rented?")[0];
 
-            for (int i = 0; i < (cycles.size()); i++) {
+            System.out.println("\nAll cycles matching filters: ");
 
-                Cycle cycle = cycles.get(i);
-                int cycleId = cycle.getIntValues()[0];
+            for (Cycle cycle : cycles) {
 
-                if (id <= cycleId && cycleId <= id + range) {
-                    deletedCount++;
+                if (!includeRented && cycle.getIsRented()) {
                     continue;
                 }
-                modifiedCycles.add(cycle);
+
+                if (cycleId <= cycle.getId() && cycle.getId() <= cycleId + range) {
+                    System.out.println(cycle.toString() + "\n\n");
+                }
             }
-
-            ReplaceData.replace(modifiedCycles, filePath);
-            data.updateCycles(modifiedCycles);
-
-            System.out.println("\n" + deletedCount + " Matching Records Successfully deleted");
 
         } catch (InvalidInputException e) {
             System.out.println("\nFailure, Invalid inputs\n");
-            Command cmd = new DeleteCycleId();
+            Command cmd = new GetCycleId();
             AppData.getCommandArgDetails(cmd);
             return;
         } catch (Exception e) {
@@ -64,10 +62,10 @@ public class DeleteCycleId implements Command {
         System.out.println("\nSuccess");
     }
 
-    int inModuleId = 2;
-    String commandName = "delete cycle id";
-    String commandShort = "d c i";
-    String commandInfo = "deletes cycles in inclusive range(Id, Id+Range), confirms number of successfully deleted records.";
+    int inModuleId = 7;
+    String commandName = "get cycle id";
+    String commandShort = "g c i";
+    String commandInfo = "returns records by id range, range inclusive.";
 
     public int getCommandId() {
         return inModuleId;

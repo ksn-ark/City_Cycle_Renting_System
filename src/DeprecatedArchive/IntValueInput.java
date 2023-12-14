@@ -35,6 +35,7 @@ public class IntValueInput {
                 }
             } catch (IndexOutOfBoundsException e) {
                 System.err.println("value is a required argument");
+                System.out.println("Command failed.");
                 throw e;
             } catch (NumberFormatException e) {
                 System.out.println(inputString + " is an invalid integer arg");

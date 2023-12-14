@@ -3,7 +3,7 @@ package CommandHandlers;
 import java.util.*;
 import java.util.List;
 
-import Commands.*;
+import Commands.Command;
 import Data.AppData;
 
 public class InputCommand {
@@ -21,20 +21,15 @@ public class InputCommand {
 
             String userInput = scnr.nextLine().toLowerCase();
 
-            if (userInput.equals("exit")) {
-                System.exit(0);
+            if (userInput.equals("")) {
+                continue;
             }
 
             String[] splitInput = userInput.split(" ");
 
-            if (splitInput.length > 3) {
-                error404();
-                continue;
-            }
-
             String commandName = "";
 
-            for (int i = 0; i < splitInput.length; i++) {
+            for (int i = 0; i < shortHandMaps.size() && i < splitInput.length; i++) {
 
                 try {
                     String nameArg = shortHandMaps.get(i).get(splitInput[i]);
@@ -61,9 +56,11 @@ public class InputCommand {
                 error404();
                 continue;
             }
-
-            command.execute(data);
-
+            try {
+                command.execute(data);
+            } catch (Exception e) {
+                continue;
+            }
         }
     }
 

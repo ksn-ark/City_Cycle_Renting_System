@@ -3,11 +3,18 @@ package Data;
 import java.util.*;
 
 import Commands.Command;
-import Commands.Help;
 import Commands.Adddel.AddCycle;
 import Commands.Adddel.DeleteCycleArea;
 import Commands.Adddel.DeleteCycleId;
 import Commands.Get.GetCycle;
+import Commands.Get.GetCycleRented;
+import Commands.Get.GetUser;
+import Commands.Get.GetUserBill;
+import Commands.Get.GetUserHoursRented;
+import Commands.Get.GetUserLocation;
+import Commands.Utiltities.Exit;
+import Commands.Utiltities.Help;
+import InputHandler.RangeCheck;
 
 public class AppData {
 
@@ -53,6 +60,14 @@ public class AppData {
         return cycles;
     }
 
+    public void addCycle(Cycle cycle) {
+        cycles.add(cycle);
+    }
+
+    public void updateCycles(List<Cycle> newCycles) {
+        cycles = newCycles;
+    }
+
     static { // mapping the command short hands to their long forms
         Map<String, String> shm1 = new HashMap<>();
 
@@ -62,6 +77,7 @@ public class AppData {
         shm1.put("u", "Update");
         shm1.put("g", "Get");
         shm1.put("r", "Rent");
+        shm1.put("e", "Exit");
 
         Map<String, String> shm2 = new HashMap<>();
 
@@ -84,13 +100,22 @@ public class AppData {
 
     static { // map of string command names to command instances
 
-        Map<String, Command> m = new HashMap<>();
+        Map<String, Command> m = new LinkedHashMap<>();
 
         m.put("AddCycle", new AddCycle());
         m.put("DeleteCycleArea", new DeleteCycleArea());
         m.put("DeleteCycleId", new DeleteCycleId());
+
+        m.put("GetUser", new GetUser());
+        m.put("GetUserLocation", new GetUserLocation());
+        m.put("GetUserHoursRented", new GetUserHoursRented());
+        m.put("GetUserBill", new GetUserBill());
         m.put("GetCycle", new GetCycle());
+        m.put("GetCycleRented", new GetCycleRented());
+        // m.put("GetCycleId", new GetCycleId());
+
         m.put("Help", new Help());
+        m.put("Exit", new Exit());
 
         commandMap = m;
 
@@ -103,4 +128,28 @@ public class AppData {
     public static Map<String, Command> getCommandMap() {
         return commandMap;
     }
+
+    static public String getCommandArgDetails(Command cmd) {
+        String output = "";
+        Map<String, Object[]> commandargs = cmd.getCommandArgs();
+
+        if (commandargs.size() == 0) {
+            output += "\nExpected args: None";
+            return output;
+        }
+
+        System.out.print("\nExpected args: \n");
+
+        for (Map.Entry<String, Object[]> arg : commandargs.entrySet()) {
+            output += "\n\t" + arg.getKey() + "Type: " + arg.getValue()[0].getClass().getSimpleName()
+                    + "Default value: "
+                    + arg.getValue()[0];
+            if (arg.getValue().length > 1) {
+                RangeCheck check = (RangeCheck) arg.getValue()[1];
+                output += "Range: " + check.getRange();
+            }
+        }
+        return output;
+    }
+
 }

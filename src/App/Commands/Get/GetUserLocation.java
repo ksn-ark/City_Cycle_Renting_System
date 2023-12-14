@@ -1,33 +1,26 @@
 package Commands.Get;
 
-import Data.AppData;
-import Data.Cycle;
-
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import Commands.Command;
+import Data.AppData;
+import Data.User;
 
-public class GetCycle implements Command {
+public class GetUserLocation implements Command {
 
     Map<String, Object[]> commandArgs = new LinkedHashMap<>();
 
     public void execute(AppData data) {
+        User user = data.getUser();
 
-        List<Cycle> cycles = data.getCycles();
-
-        System.out.println("\nAll cycles: ");
-
-        for (Cycle cycle : cycles) {
-            System.out.println(cycle.toString() + "\n\n");
-        }
+        System.err.println("\nUser location is at x: " + user.getX() + " and y: " + user.getY());
     }
 
-    int inModuleId = 5;
-    String commandName = "get cycle";
-    String commandShort = "g c";
-    String commandInfo = "returns all records.";
+    int inModuleId = 2;
+    String commandName = "get user location";
+    String commandShort = "g u l";
+    String commandInfo = "returns user location.";
 
     public int getCommandId() {
         return inModuleId;

@@ -1,33 +1,29 @@
 package Commands.Get;
 
-import Data.AppData;
-import Data.Cycle;
-
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import Commands.Command;
+import Data.AppData;
+import Data.User;
 
-public class GetCycle implements Command {
+public class GetUserHoursRented implements Command {
 
     Map<String, Object[]> commandArgs = new LinkedHashMap<>();
 
     public void execute(AppData data) {
 
-        List<Cycle> cycles = data.getCycles();
+        User user = data.getUser();
+        int hoursRented = user.getHoursRented();
 
-        System.out.println("\nAll cycles: ");
+        System.out.println("\nTotal hours rented by user: " + hoursRented);
 
-        for (Cycle cycle : cycles) {
-            System.out.println(cycle.toString() + "\n\n");
-        }
     }
 
-    int inModuleId = 5;
-    String commandName = "get cycle";
-    String commandShort = "g c";
-    String commandInfo = "returns all records.";
+    int inModuleId = 3;
+    String commandName = "get user hoursRented";
+    String commandShort = "g u h";
+    String commandInfo = "returns users total rented hours";
 
     public int getCommandId() {
         return inModuleId;

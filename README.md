@@ -146,7 +146,7 @@ u s l⏎
 
 ### **Requesting records :**
 
-- **get user** `(ratePerHour in euro : +ve non-zero float (0.5))`
+- **get user** `()`
 
   - _returns user location, rented cycles, total rented hours & total spending in euro._
 
@@ -158,7 +158,7 @@ u s l⏎
 
   - _returns users total rented hours_
 
-- **get user bill** `(ratePerHour in euro : +ve non-zero float (0.5))`
+- **get user bill** `()`
 
   - _returns user total spending (in euro)_
 
@@ -170,11 +170,11 @@ u s l⏎
 
   - _returns all rented cycles_
 
-- **get cycle id** `(cycleId: +ve int(required), OptionalcycleId: +ve int (cycleId), include isRented : boolean (false))`
+- **get cycle id** `(cycleId: +ve int(required), Range: +ve int (0), include isRented : boolean (false))`
 
   - _returns records by id range, range inclusive._
 
-- **get cycle hoursRented** `(maxhoursRented: +ve int (unlimited), include isRented : boolean (false), minhoursRented: +ve int <= maxhoursRented (0))`
+- **get cycle hoursRented** `(maxhoursRented: +ve int (unlimited), include isRented : boolean (false), minhoursRented: +ve int <= maxHoursRented (0))`
 
   - _returns records by rented hours, range inclusive._
 

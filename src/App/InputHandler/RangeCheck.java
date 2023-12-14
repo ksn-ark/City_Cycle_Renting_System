@@ -2,14 +2,13 @@ package ValueInputHandlers;
 
 public class RangeCheck {
 
-    int intMin;
-    int intMax;
-    float floatMin;
-    float floatMax;
+    int intMin = -1;
+    int intMax = -1;
+    float floatMin = -1;
+    float floatMax = -1;
 
     public RangeCheck(int intMin) {
         this.intMin = intMin;
-        this.intMax = -1;
     }
 
     public RangeCheck(int intMin, int intMax) {
@@ -19,7 +18,6 @@ public class RangeCheck {
 
     public RangeCheck(float floatMin) {
         this.floatMin = floatMin;
-        this.floatMax = -1;
     }
 
     public RangeCheck(float floatMin, float floatMax) {
@@ -40,4 +38,31 @@ public class RangeCheck {
         }
         return floatMin <= input && input <= floatMax;
     }
+
+    public String getRange() {
+
+        String output = "(";
+
+        if (intMin != -1) {
+            output += intMin;
+            if (intMax != -1) {
+                output += " " + intMax;
+            } else {
+                output += " max int value";
+            }
+        }
+        if (floatMin != -1) {
+            output += floatMin;
+            if (floatMax != -1) {
+                output += " " + floatMax;
+            } else {
+                output += " max float value";
+            }
+        }
+
+        output += ") inclusive";
+
+        return output;
+    }
+
 }
