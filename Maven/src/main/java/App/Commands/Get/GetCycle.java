@@ -20,7 +20,7 @@ public class GetCycle implements Command {
         System.out.println("\nAll cycles: ");
 
         for (Cycle cycle : cycles) {
-            System.out.println(cycle.toString() + "\n\n");
+            System.out.println(cycle.toString() + "\n");
         }
     }
 

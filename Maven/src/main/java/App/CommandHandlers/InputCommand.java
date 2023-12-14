@@ -12,7 +12,7 @@ public class InputCommand {
 
     static Map<String, Command> commandMap = AppData.getCommandMap();
 
-    Scanner scnr = new Scanner(System.in);
+    static Scanner scnr = new Scanner(System.in);
 
     public void handler(AppData data) {
         while (true) {
@@ -59,6 +59,7 @@ public class InputCommand {
             try {
                 command.execute(data);
             } catch (Exception e) {
+                System.out.println("hello throw?");
                 continue;
             }
         }

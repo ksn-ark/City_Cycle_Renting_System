@@ -1,8 +1,10 @@
+C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Rent\RentCycle.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Update\UpdateUserLocation.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Get\GetCycleId.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Command.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Adddel\DeleteCycleArea.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Get\GetCycleProximity.java
+C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Update\UpdateRentPerHour.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Data\ValueObject.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\OnStart\InitialUserLocation.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Get\GetCycle.java
@@ -11,6 +13,7 @@ C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\C
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Utiltities\Help.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Main.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\OnStart\SetRentPerHour.java
+C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Update\UpdateCycleLocation.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Data\User.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Data\ReplaceData.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Adddel\DeleteCycleId.java
@@ -19,7 +22,9 @@ C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\I
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\InputHandler\InvalidInputException.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Adddel\AddCycle.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Data\Cycle.java
+C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Update\UpdateCycle.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Get\GetUserLocation.java
+C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Update\UpdateCycleRented.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Get\GetUser.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\Commands\Get\GetUserBill.java
 C:\Files\Github\Repositories\City_Cycle_Renting_System\Maven\src\main\java\App\InputHandler\RangeCheck.java

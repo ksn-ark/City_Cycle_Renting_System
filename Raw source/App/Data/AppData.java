@@ -6,7 +6,7 @@ import Commands.*;
 import Commands.Adddel.*;
 import Commands.Get.*;
 import Commands.Update.*;
-import Commands.Rent.*;
+
 import Commands.Utiltities.*;
 import InputHandler.RangeCheck;
 
@@ -116,7 +116,6 @@ public class AppData {
         m.put("UpdateUserLocation", new UpdateUserLocation());
 
         // rent commands
-        m.put("rentestbrochill", new RentTest());
 
         // utility commands
         m.put("Help", new Help());

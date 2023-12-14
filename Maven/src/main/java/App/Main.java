@@ -36,6 +36,8 @@ public class Main {
 
         filePath = projectRoot + File.separator + "Storage/Cycles.csv";
 
+        System.out.println(filePath);
+
         int[] userPos = InitialUserLocation.execute();
 
         user = new User(userPos[0], userPos[1]);

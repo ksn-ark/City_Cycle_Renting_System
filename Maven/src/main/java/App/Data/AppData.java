@@ -77,6 +77,7 @@ public class AppData {
 
         shm2.put("u", "User");
         shm2.put("c", "Cycle");
+        shm2.put("r", "RentPerHour");
 
         Map<String, String> shm3 = new HashMap<>();
 
@@ -113,10 +114,17 @@ public class AppData {
         m.put("GetCycleProximity", new GetCycleProximity());
 
         // update commands
+        m.put("UpdateCycle", new UpdateCycle());
+        m.put("UpdateCycleLocation", new UpdateCycleLocation());
+        m.put("UpdateCycleRented", new UpdateCycleRented());
         m.put("UpdateUserLocation", new UpdateUserLocation());
+        m.put("UpdateRentPerHour", new UpdateRentPerHour());
 
         // rent commands
-        m.put("rentestbrochill", new RentTest());
+        m.put("RentCycle", new RentCycle());
+        m.put("RentCycleLocation", new RentCycleLocation());
+        m.put("RentCycleProximity", new RentCycleProximity());
+        m.put("RentCycleArea", new RentCycleArea());
 
         // utility commands
         m.put("Help", new Help());
@@ -132,6 +140,10 @@ public class AppData {
 
     public static Map<String, Command> getCommandMap() {
         return commandMap;
+    }
+
+    public void setRentPerHour(Float newRentPerHour) {
+        rentPerHour = newRentPerHour;
     }
 
     static public String getCommandArgDetails(Command cmd) {

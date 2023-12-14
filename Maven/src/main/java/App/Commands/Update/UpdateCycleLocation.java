@@ -13,14 +13,14 @@ import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class UpdateCycle implements Command {
+public class UpdateCycleLocation implements Command {
 
     static Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
         {
             put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
             put("Range", new Object[] { (Integer) 0, new RangeCheck(0) });
             put("new x-value", new Object[] { "intUnchanged", new RangeCheck(0) });
-            put("new y-value", new Object[] { "intUnchanged", new RangeCheck(0) });
+            put("new y-value", new Object[] { "intUchanged", new RangeCheck(0) });
             put("Mark unrented?", new Object[] { false });
         }
     };
@@ -71,14 +71,14 @@ public class UpdateCycle implements Command {
                 }
             }
 
-            data.updateCycles(cycles);
-            ReplaceData.replace(cycles, filePath);
-
             System.out.println("\nModified Cycles :");
 
             for (Cycle cycle : modifiedCycles) {
                 System.out.println(cycle.toString() + "\n");
             }
+            data.updateCycles(cycles);
+            ReplaceData.replace(cycles, filePath);
+
             System.out.println("\n" + updatedCount + " Matching Records successfully updated");
 
         } catch (InvalidInputException e) {
@@ -93,10 +93,10 @@ public class UpdateCycle implements Command {
 
     }
 
-    int inModuleId = 1;
-    String commandName = "update cycle";
-    String commandShort = "u c";
-    String commandInfo = "updates locations of all rented cycles in inclusive range and can set rented status of all to false";
+    int inModuleId = 2;
+    String commandName = "update cycle location";
+    String commandShort = "u c l";
+    String commandInfo = "updates cycle location by Id.";
 
     public int getCommandId() {
         return inModuleId;

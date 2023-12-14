@@ -52,6 +52,7 @@ public class GetCycleHoursRented implements Command {
             System.out.println("\nFailure, Invalid inputs\n");
             Command cmd = new GetCycleHoursRented();
             System.out.println(AppData.getCommandArgDetails(cmd));
+            System.err.println("\n\t*NOTE: min hours has to be lesser than or equal to max hours.");
             return;
         } catch (Exception e) {
             e.printStackTrace();

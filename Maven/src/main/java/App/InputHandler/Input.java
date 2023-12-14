@@ -3,6 +3,30 @@ package App.InputHandler;
 import java.util.Map;
 import java.util.Scanner;
 
+/*
+ * Command arguments are defined in a <String, Object[]> map above every execute
+ * method this allows a single input class to proccess any number of arguments
+ * of all types and handle default value cases required cases and even
+ * rangechecking all with a single variable.
+ * 
+ * It also allows the help command to dynamically print the expected arguments,
+ * default values, types and ranges for any command.
+ * 
+ * Command arg Map example:
+ * 
+ * ("ArgName", Object[]{default-value:(implicit-type-implication),RangeCheck()})
+ * 
+ * in cases of default value being a previous field, default value is a string
+ * that is the name of the field. Since it's always a field that has already
+ * been processed it recieves the value.
+ * 
+ * in cases of no default value, i.e required it is given as
+ * "valuetypeRequired" , ex- "intRequired"
+ * 
+ * in cases of default value being unchanged it is "valuetypeUnchanged", ex-
+ * "intUnchanged"
+ */
+
 public class Input {
 
     static Scanner scnr = new Scanner(System.in);
@@ -25,7 +49,8 @@ public class Input {
 
                 if (commandArgs.get(argString) != null) { // in cases of value being required it will fall of here
 
-                    arg.setValue(commandArgs.get(argString));
+                    arg.setValue(commandArgs.get(argString)); // field name of default value is defined as value in
+                                                              // commandargMap
 
                     continue;
 
@@ -79,12 +104,13 @@ public class Input {
 
             if (inputString.equals("")) { // no input
 
-                if (valueObject[0] instanceof String) {
+                if (valueObject[0] instanceof String) { // this is in cases that the value is required or unchanged
 
-                    if (valueObject[0].equals("unchanged")) {
+                    if (valueObject[0].toString().endsWith("Unchanged")) {
 
                         valueObject[0] = -1; // unchanged is keyed as -1 as no int or float accepts non-zero input
-                                             // normally.
+                                             // normally. can be keyed as a string and check for that if project is
+                                             // further expanded and there is a need.
 
                         return valueObject;
 
@@ -92,13 +118,14 @@ public class Input {
                     System.err.println("value is a required argument");
                     System.out.println("Command failed.");
 
-                    throw new IndexOutOfBoundsException(); // throws if no required values
+                    throw new InvalidInputException(inputString); // throws if no required values
                 }
 
-                return valueObject; // defaults
+                return valueObject; // defaults to value if available
             }
 
-            if (valueObject[0] instanceof String) { // handles required values
+            if (valueObject[0] instanceof String) { // handles parsing input for required/unchanged values
+
                 String value = (String) valueObject[0];
                 if (value.startsWith("int")) {
                     valueObject[0] = Integer.parseInt(inputString);
@@ -140,5 +167,18 @@ public class Input {
         }
 
         return valueObject;
+    }
+
+    public static boolean confirmAction() {
+
+        System.out.println("Enter yes or y to confirm action, any other key to cancel.");
+        System.out.print("\t");
+        String userInput = scnr.nextLine();
+        if (!userInput.equals("y") && !userInput.equals("yes")) {
+            System.out.println("\nCommand cancelled, no changes made.");
+
+            return false;
+        }
+        return true;
     }
 }
