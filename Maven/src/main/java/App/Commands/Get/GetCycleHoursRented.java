@@ -51,7 +51,7 @@ public class GetCycleHoursRented implements Command {
         } catch (InvalidInputException e) {
             System.out.println("\nFailure, Invalid inputs\n");
             Command cmd = new GetCycleHoursRented();
-            AppData.getCommandArgDetails(cmd);
+            System.out.println(AppData.getCommandArgDetails(cmd));
             return;
         } catch (Exception e) {
             e.printStackTrace();

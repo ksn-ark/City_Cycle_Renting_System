@@ -56,7 +56,7 @@ public class GetCycleProximity implements Command {
         } catch (InvalidInputException e) {
             System.out.println("\nFailure, Invalid inputs\n");
             Command cmd = new GetCycleProximity();
-            AppData.getCommandArgDetails(cmd);
+            System.out.println(AppData.getCommandArgDetails(cmd));
             return;
         } catch (Exception e) {
             e.printStackTrace();

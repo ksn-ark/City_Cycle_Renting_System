@@ -129,7 +129,7 @@ u s l⏎
 
 ### **Updating records :**
 
-- **update cycle** `(cycleId: +ve int (required), range end cycleId : +ve int >= cycleId (cycleId), x-value: +ve int (unchanged), y-value: +ve int(unchanged), mark as not rented? : boolean (false))`
+- **update cycle** `(cycleId: +ve int (required), range: +ve int (0), x-value: +ve int (unchanged), y-value: +ve int(unchanged), mark as not rented? : boolean (false))`
 
   - _updates locations of all rented cycles in inclusive range and can set rented status of all to false_
 

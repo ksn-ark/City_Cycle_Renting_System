@@ -80,6 +80,15 @@ public class Input {
             if (inputString.equals("")) { // no input
 
                 if (valueObject[0] instanceof String) {
+
+                    if (valueObject[0].equals("unchanged")) {
+
+                        valueObject[0] = -1; // unchanged is keyed as -1 as no int or float accepts non-zero input
+                                             // normally.
+
+                        return valueObject;
+
+                    }
                     System.err.println("value is a required argument");
                     System.out.println("Command failed.");
 

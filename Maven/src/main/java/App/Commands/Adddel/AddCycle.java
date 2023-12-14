@@ -48,7 +48,7 @@ public class AddCycle implements Command {
         } catch (InvalidInputException e) {
             System.out.println("\nFailure, Invalid inputs\n");
             Command cmd = new AddCycle();
-            System.err.println(AppData.getCommandArgDetails(cmd));
+            System.out.println(AppData.getCommandArgDetails(cmd));
             return;
         } catch (Exception e) {
             e.printStackTrace();

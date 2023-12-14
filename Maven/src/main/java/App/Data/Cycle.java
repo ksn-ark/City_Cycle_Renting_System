@@ -91,15 +91,31 @@ public class Cycle {
         return x;
     }
 
+    public int setX(int newx) {
+        return newx;
+    }
+
     public int getY() {
         return y;
+    }
+
+    public void setY(int newy) {
+        y = newy;
     }
 
     public int getHoursRented() {
         return hoursRented;
     }
 
+    public void setHoursRented(int newHoursRented) {
+        hoursRented = newHoursRented;
+    }
+
     public boolean getIsRented() {
         return isRented;
+    }
+
+    public void setIsRented(boolean newIsRented) {
+        isRented = newIsRented;
     }
 }
