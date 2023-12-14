@@ -1,7 +1,6 @@
 package App.CommandHandlers;
 
 import java.util.*;
-import java.util.List;
 
 import App.Commands.Command;
 import App.Data.AppData;
@@ -14,10 +13,14 @@ public class InputCommand {
 
     static Scanner scnr = new Scanner(System.in);
 
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    public static final String ANSI_BLUE = " \u001B[34m";
+
     public void handler(AppData data) {
         while (true) {
 
-            System.out.print("\nEnter Command: ");
+            System.out.print(ANSI_BLUE + "\nEnter Command: " + ANSI_RESET);
 
             String userInput = scnr.nextLine().toLowerCase();
 
@@ -59,7 +62,6 @@ public class InputCommand {
             try {
                 command.execute(data);
             } catch (Exception e) {
-                System.out.println("hello throw?");
                 continue;
             }
         }

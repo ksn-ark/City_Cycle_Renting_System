@@ -18,18 +18,19 @@ public class Help implements Command {
                 "       2. update commands\n" +
                 "       3. get commands\n" +
                 "       4. rent commands\n" +
-                "       5. help command\n\n");
+                "       5. utility commands\n\n");
 
         System.out.print("Enter selection :");
-        String userInput = scnr.nextLine();
+        String userInput = scnr.nextLine().toLowerCase();
         System.out.print("\n");
+
         Map<String[], Runnable> CommandModules = new HashMap<String[], Runnable>() {
             {
-                put(new String[] { "1", "add+delete", "add", "delete" }, () -> command("Add"));
-                put(new String[] { "2", "update" }, () -> command("Update"));
-                put(new String[] { "3", "get" }, () -> command("Get"));
-                put(new String[] { "4", "rent" }, () -> command("Rent"));
-                put(new String[] { "5", "help" }, () -> help());
+                put(new String[] { "1", "add+delete", "add", "delete" }, () -> commands("Add"));
+                put(new String[] { "2", "update" }, () -> commands("Update"));
+                put(new String[] { "3", "get" }, () -> commands("Get"));
+                put(new String[] { "4", "rent" }, () -> commands("Rent"));
+                put(new String[] { "5", "utility" }, () -> commands("Util"));
             }
         };
 
@@ -45,57 +46,71 @@ public class Help implements Command {
         System.out.println("\nno such module, returning to command.\n");
     }
 
-    void command(String moduleName) {
+    void commands(String moduleName) {
 
         Map<String, Command> commandMap = AppData.getCommandMap();
 
+        Map<String, Command> moduleMap = new HashMap<>();
+
         boolean flag = true;
 
-        for (Map.Entry<String, Command> commandEntry : commandMap.entrySet()) { // prints commands in module
-            if (moduleName.equals("Add")) {
-                flag = commandEntry.getKey().startsWith("Add") || commandEntry.getKey().startsWith("Delete");
-            } else {
-                flag = commandEntry.getKey().startsWith(moduleName);
-            }
+        for (Map.Entry<String, Command> commandEntry : commandMap.entrySet()) { // prints commands in module and adds
+                                                                                // them to moduleMap
+
+            flag = setFlag(moduleName, commandEntry.getKey());
+
             if (flag) {
                 Command cmd = commandEntry.getValue();
                 System.out.println(
                         cmd.getCommandId() + ". " + cmd.getCommandName() + " (" + cmd.getCommandShort() + ")\n");
+                moduleMap.put(commandEntry.getKey(), commandEntry.getValue());
             }
         }
 
         System.out.print("Enter selection: "); // select command from module
 
-        String userInput = scnr.nextLine();
+        String userInput = scnr.nextLine().toLowerCase();
 
         System.out.println("\n");
 
-        for (Map.Entry<String, Command> commandEntry : commandMap.entrySet()) { // prints details of command
+        int matchCheck = 0;
 
-            if (moduleName.equals("Add")) {
-                flag = commandEntry.getKey().startsWith("Add") || commandEntry.getKey().startsWith("Delete");
-            } else {
-                flag = commandEntry.getKey().startsWith(moduleName);
-            }
-            if (flag) {
-                Command cmd = commandEntry.getValue();
-                if (userInput.equals(cmd.getCommandName()) || userInput.equals(cmd.getCommandShort())
-                        || userInput.equals(cmd.getCommandIdString())) {
+        for (Map.Entry<String, Command> commandEntry : moduleMap.entrySet()) { // prints details of command
 
-                    System.out.println(cmd.getCommandName() + " (" + cmd.getCommandShort() + ")\n");
+            Command cmd = commandEntry.getValue();
 
-                    System.out.println(cmd.getCommandInfo() + "\n");
+            if (userInput.equals(cmd.getCommandName().toLowerCase())
+                    || userInput.equals(cmd.getCommandShort().toLowerCase())
+                    || userInput.equals(cmd.getCommandIdString())) {
 
-                    System.out.println(AppData.getCommandArgDetails(cmd));
+                System.out.println(cmd.getCommandName() + " (" + cmd.getCommandShort() + ")\n");
 
-                }
+                System.out.println(cmd.getCommandInfo() + "\n");
+
+                System.out.println(AppData.getCommandArgDetails(cmd));
+
+                matchCheck++;
             }
         }
 
+        if (matchCheck == 0) {
+            System.out.println("Invalid selection, returning to command.\n");
+        }
     }
 
-    void help() {
-        System.out.println("\nThis command, displays list of modules allows you to see further details");
+    boolean setFlag(String moduleName, String commandEntryKey) {
+        boolean flag = false;
+
+        if (moduleName.equals("Add")) {
+            flag = commandEntryKey.startsWith("Add") || commandEntryKey.startsWith("Delete");
+        }
+        if (moduleName.equals("Util")) {
+            flag = commandEntryKey.startsWith("Help") || commandEntryKey.startsWith("Exit");
+        }
+        if (!moduleName.equals("Add") && !moduleName.equals("Util")) {
+            flag = commandEntryKey.startsWith(moduleName);
+        }
+        return flag;
     }
 
     int inModuleId = 1;

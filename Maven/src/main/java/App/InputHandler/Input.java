@@ -29,6 +29,10 @@ import java.util.Scanner;
 
 public class Input {
 
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    public static final String ANSI_GREEN = "\u001B[32m";
+
     static Scanner scnr = new Scanner(System.in);
 
     static public Map<String, Object[]> getCommandArgs(Map<String, Object[]> commandArgs) throws InvalidInputException {
@@ -39,7 +43,7 @@ public class Input {
 
             String endString = valueObject[0] instanceof Boolean ? " (true or false): " : ": ";
 
-            System.out.print("\nEnter " + arg.getKey() + endString);
+            System.out.print(ANSI_GREEN + "\nEnter " + arg.getKey() + endString + ANSI_RESET);
 
             String inputString = scnr.nextLine();
 
@@ -171,8 +175,8 @@ public class Input {
 
     public static boolean confirmAction() {
 
-        System.out.println("Enter yes or y to confirm action, any other key to cancel.");
-        System.out.print("\t");
+        System.out.println(ANSI_GREEN + "\tEnter yes or y to confirm action, any other key to cancel." + ANSI_RESET);
+        System.out.print("\t\t");
         String userInput = scnr.nextLine();
         if (!userInput.equals("y") && !userInput.equals("yes")) {
             System.out.println("\nCommand cancelled, no changes made.");

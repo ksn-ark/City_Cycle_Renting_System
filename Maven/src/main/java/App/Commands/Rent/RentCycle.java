@@ -52,18 +52,23 @@ public class RentCycle implements Command {
                 }
             }
 
-            System.out.println("Total cycles being rented " + rentedCount);
-            System.out.println("Number of hours each cycle is being rented for " + hoursToRent);
+            if (rentedCount == 0) {
+                System.out.println("\n" + rentedCount + " Matching Cycles.");
+                return;
+            }
+
+            System.out.println("\nTotal cycles being rented " + rentedCount);
+            System.out.println("\nNumber of hours each cycle is being rented for " + hoursToRent);
 
             if (rentedCount < requiredRentCount) {
-                System.out.println("Total bill" + rentedCount * hoursToRent * rentPerHour);
-                System.out.println("Only " + rentedCount + " cycles available under current filters.");
+                System.out.println("\nTotal bill = " + rentedCount * hoursToRent * rentPerHour);
+                System.out.println("\nOnly " + rentedCount + " cycles available under current filters.\n");
                 if (!Input.confirmAction()) {
                     return;
                 }
             }
 
-            System.out.println("Final bill = " + rentedCount * hoursToRent * rentPerHour);
+            System.out.println("\nFinal bill = " + rentedCount * hoursToRent * rentPerHour + "\n");
 
             if (!Input.confirmAction()) {
                 return;

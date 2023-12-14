@@ -30,13 +30,22 @@ public class Main {
 
     static List<Cycle> cycles;
 
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    public static final String ANSI_CYAN = " \u001B[36m";
+
+    public static final String ANSI_GREEN = "\u001B[32m";
+
+    public static final String ANSI_BLUE = " \u001B[34m";
+
     public static void main(String[] args) throws FileNotFoundException {
 
         String projectRoot = System.getProperty("user.dir");
 
         filePath = projectRoot + File.separator + "Storage/Cycles.csv";
 
-        System.out.println(filePath);
+        System.out.println(ANSI_CYAN + "\n\n\tInitializing....,\n\t\t" + ANSI_RESET + ANSI_GREEN
+                + "Enter user & renting rate details.\n" + ANSI_RESET);
 
         int[] userPos = InitialUserLocation.execute();
 
@@ -61,6 +70,9 @@ public class Main {
 
                 InputCommand inputCommand = new InputCommand();
 
+                System.out
+                        .println(ANSI_CYAN + "\n\tJava based Cycle Renting & DataBase System (J-CRDS)\n" + ANSI_RESET);
+                System.out.println(ANSI_GREEN + "P.S type 'h' or 'help' for help." + ANSI_RESET);
                 inputCommand.handler(data);
 
             } catch (Exception error) {

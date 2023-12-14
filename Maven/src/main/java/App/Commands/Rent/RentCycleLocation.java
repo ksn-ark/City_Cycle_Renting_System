@@ -60,7 +60,7 @@ public class RentCycleLocation implements Command {
             System.out.println("Number of hours each cycle is being rented for " + hoursToRent);
 
             if (rentedCount < requiredRentCount) {
-                System.out.println("Total bill" + rentedCount * hoursToRent * rentPerHour);
+                System.out.println("Total bill = " + rentedCount * hoursToRent * rentPerHour);
                 System.out.println("Only " + rentedCount + " cycles available under current filters.");
                 if (!Input.confirmAction()) {
                     return;

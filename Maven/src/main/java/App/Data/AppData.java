@@ -24,6 +24,12 @@ public class AppData {
 
     private static final List<Map<String, String>> shortHandMaps;
 
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    public static final String ANSI_RED = "\u001B[31m";
+
+    public static final String ANSI_GREEN = "\u001B[32m";
+
     private static final Map<String, Command> commandMap;
 
     public AppData(int topId, String filepath, User user, float rentPerHour, List<Cycle> cycles) {
@@ -105,12 +111,12 @@ public class AppData {
         // get commands
         m.put("GetUser", new GetUser());
         m.put("GetUserLocation", new GetUserLocation());
-        m.put("GetUserHoursRented", new GetUserHoursRented());
+        m.put("GetUserHoursrented", new GetUserHoursRented());
         m.put("GetUserBill", new GetUserBill());
         m.put("GetCycle", new GetCycle());
         m.put("GetCycleRented", new GetCycleRented());
         m.put("GetCycleId", new GetCycleId());
-        m.put("GetCycleHoursRented", new GetCycleHoursRented());
+        m.put("GetCycleHoursrented", new GetCycleHoursRented());
         m.put("GetCycleProximity", new GetCycleProximity());
 
         // update commands
@@ -118,7 +124,7 @@ public class AppData {
         m.put("UpdateCycleLocation", new UpdateCycleLocation());
         m.put("UpdateCycleRented", new UpdateCycleRented());
         m.put("UpdateUserLocation", new UpdateUserLocation());
-        m.put("UpdateRentPerHour", new UpdateRentPerHour());
+        m.put("UpdateRentPerhour", new UpdateRentPerHour());
 
         // rent commands
         m.put("RentCycle", new RentCycle());
@@ -147,23 +153,22 @@ public class AppData {
     }
 
     static public String getCommandArgDetails(Command cmd) {
-        String output = "";
+        String output = ANSI_GREEN + "";
         Map<String, Object[]> commandargs = cmd.getCommandArgs();
-
         if (commandargs.size() == 0) {
-            output += "\nExpected args: None";
+            output += "\nExpected args: None" + ANSI_RESET;
             return output;
         }
 
-        System.out.print("\nExpected args: \n");
+        output += "\nExpected args: \n" + ANSI_RESET;
 
         for (Map.Entry<String, Object[]> arg : commandargs.entrySet()) {
-            output += "\n\t" + arg.getKey() + " Type: " + arg.getValue()[0].getClass().getSimpleName()
+            output += ANSI_RED + "\n\t" + arg.getKey() + " Type: " + arg.getValue()[0].getClass().getSimpleName()
                     + " Default value: "
                     + arg.getValue()[0];
             if (arg.getValue().length > 1) {
                 RangeCheck check = (RangeCheck) arg.getValue()[1];
-                output += " Range: " + check.getRange();
+                output += " Range: " + check.getRange() + ANSI_RESET;
             }
         }
         return output;

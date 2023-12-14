@@ -12,33 +12,32 @@ public class Exit implements Command {
         System.exit(0);
     }
 
-    @Override
-    public int getCommandId() {
-        throw new UnsupportedOperationException("Exit has no such values");
-    }
+    int inModuleId = 2;
+    String commandName = "exit";
+    String commandShort = "e";
+    String commandInfo = "Exits Program";
 
-    @Override
-    public String getCommandIdString() {
-        throw new UnsupportedOperationException("Exit has no such values");
-    }
-
-    @Override
     public String getCommandName() {
-        throw new UnsupportedOperationException("Exit has no such values");
+        return commandName;
     }
 
-    @Override
     public String getCommandShort() {
-        throw new UnsupportedOperationException("Exit has no such values");
+        return commandShort;
     }
 
-    @Override
     public String getCommandInfo() {
-        throw new UnsupportedOperationException("Exit has no such values");
+        return commandInfo;
     }
 
-    @Override
     public Map<String, Object[]> getCommandArgs() {
-        throw new UnsupportedOperationException("Exit has no such values");
+        return commandArgs;
+    }
+
+    public int getCommandId() {
+        return inModuleId;
+    }
+
+    public String getCommandIdString() {
+        return Integer.toString(inModuleId);
     }
 }
