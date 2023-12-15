@@ -3,20 +3,28 @@ package App.Commands.Adddel;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.*;
 import App.InputHandler.*;
 
-public class DeleteCycleId implements Command {
+public class DeleteCycleId extends CommandAbstract {
 
-    Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
-            put("Range", new Object[] { (Integer) 0, new RangeCheck(0) });
-        }
-    };
+    public DeleteCycleId() {
+
+        this.inModuleId = 2;
+        this.commandName = "delete cycle id";
+        this.commandShort = "d c i";
+        this.commandInfo = "deletes cycles in inclusive range(Id, Id+Range), confirms number of successfully deleted records.";
+
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+            {
+                put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
+                put("Range", new Object[] { (Integer) 0, new RangeCheck(0) });
+            }
+        };
+    }
 
     int deletedCount = 0;
 
@@ -46,7 +54,7 @@ public class DeleteCycleId implements Command {
                 modifiedCycles.add(cycle);
             }
 
-            ReplaceData.replace(modifiedCycles, filePath);
+            ModifyTextData.replace(modifiedCycles, filePath);
             data.updateCycles(modifiedCycles);
 
             System.out.println("\n" + deletedCount + " Matching Records Successfully deleted");
@@ -64,32 +72,4 @@ public class DeleteCycleId implements Command {
         System.out.println("\nSuccess");
     }
 
-    int inModuleId = 2;
-    String commandName = "delete cycle id";
-    String commandShort = "d c i";
-    String commandInfo = "deletes cycles in inclusive range(Id, Id+Range), confirms number of successfully deleted records.";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }

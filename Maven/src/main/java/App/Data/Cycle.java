@@ -1,10 +1,5 @@
 package App.Data;
 
-import com.opencsv.*;
-
-import java.io.*;
-import java.util.List;
-
 public class Cycle {
 
     int id;
@@ -29,46 +24,10 @@ public class Cycle {
         return output;
     }
 
-    public void add(String filePath) throws Exception {
-
-        try {
-
-            CSVWriter writer = new CSVWriter(new FileWriter(filePath, true));
-
-            String[] newcyclecsv = { Integer.toString(id), Integer.toString(x), Integer.toString(y),
-                    Integer.toString(hoursRented), Boolean.toString(isRented) };
-
-            writer.writeNext(newcyclecsv);
-
-            writer.close();
-
-        } catch (Exception e) {
-            System.out.println("add crash");
-            throw e;
-        }
-    }
-
-    public void addTopId(String filePath, int topId) throws Exception {
-        try {
-            CSVReader reader = new CSVReader(new FileReader(filePath));
-
-            List<String[]> data = reader.readAll();
-
-            String[] modifiedHeader = data.get(0);
-
-            modifiedHeader[0] = Integer.toString(topId + 1);
-
-            data.set(0, modifiedHeader);
-
-            CSVWriter writer = new CSVWriter(new FileWriter(filePath));
-
-            writer.writeAll(data);
-
-            writer.close();
-        } catch (Exception e) {
-            System.out.println("addTopId crash");
-            throw e;
-        }
+    public String toTextString() {
+        String output = Integer.toString(id) + "," + Integer.toString(x) + "," + Integer.toString(y) + "," +
+                Integer.toString(hoursRented) + "," + Boolean.toString(isRented) + "\n";
+        return output;
     }
 
     public int[] getIntValues() {
@@ -91,8 +50,8 @@ public class Cycle {
         return x;
     }
 
-    public int setX(int newx) {
-        return newx;
+    public void setX(int newx) {
+        x = newx;
     }
 
     public int getY() {

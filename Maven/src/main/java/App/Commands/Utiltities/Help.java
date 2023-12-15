@@ -5,12 +5,21 @@ import java.util.Map;
 import java.util.Scanner;
 
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 
-public class Help implements Command {
+public class Help extends CommandAbstract {
+
+    public Help() {
+        this.inModuleId = 1;
+        this.commandName = "help";
+        this.commandShort = "h";
+        this.commandInfo = "This command, displays list of modules allows you to see further details";
+    }
 
     static Scanner scnr = new Scanner(System.in);
 
+    @Override
     public void execute(AppData data) {
         System.out.print("\nSelect an option by entering the number or module name [enter anything else to exit] :\n" +
                 "   Command Modules:\n" +
@@ -113,32 +122,4 @@ public class Help implements Command {
         return flag;
     }
 
-    int inModuleId = 1;
-    String commandName = "help";
-    String commandShort = "h";
-    String commandInfo = "This command, displays list of modules allows you to see further details";
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
 }

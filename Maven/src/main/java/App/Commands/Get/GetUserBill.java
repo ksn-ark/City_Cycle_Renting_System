@@ -1,15 +1,17 @@
 package App.Commands.Get;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.User;
 
-public class GetUserBill implements Command {
+public class GetUserBill extends CommandAbstract {
 
-    Map<String, Object[]> commandArgs = new LinkedHashMap<>();
+    public GetUserBill() {
+        this.inModuleId = 4;
+        this.commandName = "get user bill";
+        this.commandShort = "g u b";
+        this.commandInfo = "returns user total spending (in euro)";
+    }
 
     public void execute(AppData data) {
 
@@ -23,32 +25,4 @@ public class GetUserBill implements Command {
 
     }
 
-    int inModuleId = 4;
-    String commandName = "get user bill";
-    String commandShort = "g u b";
-    String commandInfo = "returns user total spending (in euro)";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }

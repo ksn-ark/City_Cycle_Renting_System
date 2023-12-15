@@ -3,24 +3,30 @@ package App.Commands.Get;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.Cycle;
 import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class GetCycleId implements Command {
+public class GetCycleId extends CommandAbstract {
 
-    Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
-            put("Range", new Object[] { 0, new RangeCheck(0) });
-            put("Include rented?", new Object[] { false });
-        }
-    };
+    public GetCycleId() {
+        this.inModuleId = 7;
+        this.commandName = "get cycle id";
+        this.commandShort = "g c i";
+        this.commandInfo = "returns records by id range, range inclusive.";
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+            {
+                put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
+                put("Range", new Object[] { 0, new RangeCheck(0) });
+                put("Include rented?", new Object[] { false });
+            }
+        };
+    }
 
     public void execute(AppData data) {
 
@@ -61,32 +67,4 @@ public class GetCycleId implements Command {
 
     }
 
-    int inModuleId = 7;
-    String commandName = "get cycle id";
-    String commandShort = "g c i";
-    String commandInfo = "returns records by id range, range inclusive.";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }

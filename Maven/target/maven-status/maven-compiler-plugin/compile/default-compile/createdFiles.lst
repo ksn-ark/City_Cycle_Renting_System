@@ -11,7 +11,6 @@ App\Commands\Rent\RentCycleLocation.class
 App\Commands\Adddel\DeleteCycleArea.class
 App\Commands\Get\GetUserLocation.class
 App\Commands\Update\UpdateCycleLocation$1.class
-App\Data\ReplaceData.class
 App\Commands\Update\UpdateCycleRented.class
 App\Main.class
 App\Commands\Command.class
@@ -27,7 +26,6 @@ App\Commands\Update\UpdateCycle.class
 App\Commands\Get\GetCycleRented.class
 App\Commands\Get\GetCycleHoursRented$1.class
 App\Commands\Get\GetUser.class
-App\Data\ValueObject.class
 App\Commands\OnStart\InitialUserLocation.class
 App\Commands\Utiltities\Exit.class
 App\Commands\Get\GetCycleProximity.class
@@ -43,10 +41,12 @@ App\Commands\Update\UpdateCycle$1.class
 App\Data\AppData.class
 App\Commands\Utiltities\Help$1.class
 App\Commands\Adddel\AddCycle.class
+App\Data\ModifyTextData.class
 App\CommandHandlers\InputCommand.class
 App\Commands\Update\UpdateCycleLocation.class
 App\InputHandler\Input.class
 App\Commands\Get\GetCycle.class
+App\Commands\CommandAbstract.class
 App\Commands\Rent\RentCycleArea$1.class
 App\Commands\Update\UpdateUserLocation.class
 App\Commands\Get\GetUserBill.class

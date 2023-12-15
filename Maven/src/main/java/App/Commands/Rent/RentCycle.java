@@ -3,25 +3,34 @@ package App.Commands.Rent;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Commands.Update.UpdateCycleRented;
 import App.Data.AppData;
 import App.Data.Cycle;
-import App.Data.ReplaceData;
+import App.Data.ModifyTextData;
+import App.Data.User;
 import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class RentCycle implements Command {
+public class RentCycle extends CommandAbstract {
 
-    static Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
-            put("Number of cycles", new Object[] { (Integer) 1, new RangeCheck(1) });
-            put("Hours to rent", new Object[] { (Integer) 1, new RangeCheck(1, 24) });
-        }
-    };
+    public RentCycle() {
+
+        this.inModuleId = 1;
+        this.commandName = "rent cycle";
+        this.commandShort = "r c";
+        this.commandInfo = "rents every available cycle with cycleId >= given id till required number of cycles are marked for rent. if not enough, available cycles are marked for rent. bill is calculated, confirmation is asked.";
+
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+            {
+                put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
+                put("Number of cycles", new Object[] { (Integer) 1, new RangeCheck(1) });
+                put("Hours to rent", new Object[] { (Integer) 1, new RangeCheck(1, 24) });
+            }
+        };
+    }
 
     public void execute(AppData data) {
 
@@ -30,6 +39,8 @@ public class RentCycle implements Command {
         float rentPerHour = data.getRentPerHour();
 
         List<Cycle> cycles = data.getCycles();
+
+        User user = data.getUser();
 
         List<Cycle> rentedCycles = new ArrayList<>();
 
@@ -46,7 +57,11 @@ public class RentCycle implements Command {
 
                 if (id <= cycle.getId() && rentedCount < requiredRentCount && !cycle.getIsRented()) {
 
+                    cycle.setHoursRented(cycle.getHoursRented() + hoursToRent);
                     cycle.setIsRented(true);
+
+                    user.setHoursRented(user.getHoursRented() + hoursToRent);
+
                     rentedCycles.add(cycle);
                     rentedCount++;
                 }
@@ -61,14 +76,14 @@ public class RentCycle implements Command {
             System.out.println("\nNumber of hours each cycle is being rented for " + hoursToRent);
 
             if (rentedCount < requiredRentCount) {
-                System.out.println("\nTotal bill = " + rentedCount * hoursToRent * rentPerHour);
+                System.out.println("\nTotal bill = " + rentedCount * hoursToRent * rentPerHour + " Euro");
                 System.out.println("\nOnly " + rentedCount + " cycles available under current filters.\n");
                 if (!Input.confirmAction()) {
                     return;
                 }
             }
 
-            System.out.println("\nFinal bill = " + rentedCount * hoursToRent * rentPerHour + "\n");
+            System.out.println("\nFinal bill = " + rentedCount * hoursToRent * rentPerHour + " Euro\n");
 
             if (!Input.confirmAction()) {
                 return;
@@ -80,8 +95,10 @@ public class RentCycle implements Command {
                 System.out.println(cycle.toString() + "\n");
             }
 
+            user.setUserRentedCycles(rentedCycles);
+            data.setUser(user);
             data.updateCycles(cycles);
-            ReplaceData.replace(cycles, filePath);
+            ModifyTextData.replace(cycles, filePath);
 
             System.out.println("\n" + rentedCount + " Matching Cycles successfully rented");
 
@@ -96,34 +113,4 @@ public class RentCycle implements Command {
         }
 
     }
-
-    int inModuleId = 1;
-    String commandName = "rent cycle";
-    String commandShort = "r c";
-    String commandInfo = "rents every available cycle with cycleId >= given id till required number of cycles are marked for rent. if not enough, available cycles are marked for rent. bill is calculated, confirmation is asked.";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
-
 }

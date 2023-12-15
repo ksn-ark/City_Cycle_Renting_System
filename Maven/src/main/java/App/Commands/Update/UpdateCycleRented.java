@@ -3,24 +3,30 @@ package App.Commands.Update;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.Cycle;
-import App.Data.ReplaceData;
+import App.Data.ModifyTextData;
 import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class UpdateCycleRented implements Command {
+public class UpdateCycleRented extends CommandAbstract {
 
-    static Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
-            put("Range", new Object[] { (Integer) 0, new RangeCheck(0) });
-        }
-    };
+    public UpdateCycleRented() {
+        this.inModuleId = 3;
+        this.commandName = "update cycle rented";
+        this.commandShort = "u c r";
+        this.commandInfo = "updates the rented status of all rented cycles in inclusive range to false";
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+            {
+                put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
+                put("Range", new Object[] { (Integer) 0, new RangeCheck(0) });
+            }
+        };
+    }
 
     public void execute(AppData data) {
 
@@ -58,7 +64,7 @@ public class UpdateCycleRented implements Command {
             }
 
             data.updateCycles(cycles);
-            ReplaceData.replace(cycles, filePath);
+            ModifyTextData.replace(cycles, filePath);
 
             System.out.println("\n" + updatedCount + " Matching Records successfully updated");
 
@@ -74,32 +80,4 @@ public class UpdateCycleRented implements Command {
 
     }
 
-    int inModuleId = 3;
-    String commandName = "update cycle rented";
-    String commandShort = "u c r";
-    String commandInfo = "updates the rented status of all rented cycles in inclusive range to false";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }

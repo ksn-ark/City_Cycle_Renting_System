@@ -3,27 +3,33 @@ package App.Commands.Update;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.Cycle;
-import App.Data.ReplaceData;
+import App.Data.ModifyTextData;
 import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class UpdateCycleLocation implements Command {
+public class UpdateCycleLocation extends CommandAbstract {
 
-    static Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
-            put("Range", new Object[] { (Integer) 0, new RangeCheck(0) });
-            put("new x-value", new Object[] { "intUnchanged", new RangeCheck(0) });
-            put("new y-value", new Object[] { "intUchanged", new RangeCheck(0) });
-            put("Mark unrented?", new Object[] { false });
-        }
-    };
+    public UpdateCycleLocation() {
+        this.inModuleId = 2;
+        this.commandName = "update cycle location";
+        this.commandShort = "u c l";
+        this.commandInfo = "updates cycle location by Id.";
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+            {
+                put("Cycle Id", new Object[] { "intRequired", new RangeCheck(0) });
+                put("Range", new Object[] { (Integer) 0, new RangeCheck(0) });
+                put("new x-value", new Object[] { "intUnchanged", new RangeCheck(0) });
+                put("new y-value", new Object[] { "intUnchanged", new RangeCheck(0) });
+                put("Mark unrented?", new Object[] { false });
+            }
+        };
+    }
 
     public void execute(AppData data) {
 
@@ -77,7 +83,7 @@ public class UpdateCycleLocation implements Command {
                 System.out.println(cycle.toString() + "\n");
             }
             data.updateCycles(cycles);
-            ReplaceData.replace(cycles, filePath);
+            ModifyTextData.replace(cycles, filePath);
 
             System.out.println("\n" + updatedCount + " Matching Records successfully updated");
 
@@ -93,32 +99,4 @@ public class UpdateCycleLocation implements Command {
 
     }
 
-    int inModuleId = 2;
-    String commandName = "update cycle location";
-    String commandShort = "u c l";
-    String commandInfo = "updates cycle location by Id.";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }

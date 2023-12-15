@@ -1,20 +1,25 @@
 package App.Commands.Update;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.InputHandler.*;
-import App.InputHandler.InvalidInputException;
 
-public class UpdateRentPerHour implements Command {
+public class UpdateRentPerHour extends CommandAbstract {
 
-    static Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("new rent per hour", new Object[] { (Float) 0.5f, new RangeCheck(0f) });
-        }
-    };
+    public UpdateRentPerHour() {
+        this.inModuleId = 5;
+        this.commandName = "update rentPerHour";
+        this.commandShort = "u r";
+        this.commandInfo = "updates rentPerHour in euro";
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+            {
+                put("new rent per hour", new Object[] { (Float) 0.5f, new RangeCheck(0f) });
+            }
+        };
+    }
 
     public void execute(AppData data) {
 
@@ -43,32 +48,4 @@ public class UpdateRentPerHour implements Command {
 
     }
 
-    int inModuleId = 5;
-    String commandName = "update rentPerHour";
-    String commandShort = "u r";
-    String commandInfo = "updates rentPerHour in euro";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }

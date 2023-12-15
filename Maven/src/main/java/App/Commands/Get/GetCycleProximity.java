@@ -2,9 +2,9 @@ package App.Commands.Get;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.Cycle;
 import App.Data.User;
@@ -12,15 +12,24 @@ import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class GetCycleProximity implements Command {
+public class GetCycleProximity extends CommandAbstract {
 
-    Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("Range-x", new Object[] { 5, new RangeCheck(0) });
-            put("Range-y", new Object[] { "Range-x", new RangeCheck(0) });
-            put("Include rented?", new Object[] { false });
-        }
-    };
+    public GetCycleProximity() {
+
+        this.inModuleId = 9;
+        this.commandName = "get cycle proximity";
+        this.commandShort = "g c p";
+        this.commandInfo = "returns records by distance from user.";
+
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+            {
+                put("Range-x", new Object[] { 5, new RangeCheck(0) });
+                put("Range-y", new Object[] { "Range-x", new RangeCheck(0) });
+                put("Include rented?", new Object[] { false });
+            }
+        };
+
+    }
 
     public void execute(AppData data) {
 
@@ -64,32 +73,4 @@ public class GetCycleProximity implements Command {
         }
     }
 
-    int inModuleId = 9;
-    String commandName = "get cycle proximity";
-    String commandShort = "g c p";
-    String commandInfo = "returns records by distance from user.";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }

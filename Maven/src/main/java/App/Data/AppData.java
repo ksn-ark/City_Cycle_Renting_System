@@ -52,6 +52,10 @@ public class AppData {
         return user;
     }
 
+    public void setUser(User newUser) {
+        user = newUser;
+    }
+
     public float getRentPerHour() {
         return rentPerHour;
     }
@@ -152,7 +156,8 @@ public class AppData {
         rentPerHour = newRentPerHour;
     }
 
-    static public String getCommandArgDetails(Command cmd) {
+    static public String getCommandArgDetails(Command cmd) { // returns a formatted string of expected arg details for a
+                                                             // command
         String output = ANSI_GREEN + "";
         Map<String, Object[]> commandargs = cmd.getCommandArgs();
         if (commandargs.size() == 0) {
@@ -163,12 +168,12 @@ public class AppData {
         output += "\nExpected args: \n" + ANSI_RESET;
 
         for (Map.Entry<String, Object[]> arg : commandargs.entrySet()) {
-            output += ANSI_RED + "\n\t" + arg.getKey() + " Type: " + arg.getValue()[0].getClass().getSimpleName()
-                    + " Default value: "
+            output += ANSI_RED + "\n\t" + arg.getKey() + ", Type: " + arg.getValue()[0].getClass().getSimpleName()
+                    + ", Default value: "
                     + arg.getValue()[0];
             if (arg.getValue().length > 1) {
                 RangeCheck check = (RangeCheck) arg.getValue()[1];
-                output += " Range: " + check.getRange() + ANSI_RESET;
+                output += ", Range: " + check.getRange() + ANSI_RESET;
             }
         }
         return output;

@@ -1,15 +1,17 @@
 package App.Commands.Get;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.Cycle;
 
-public class GetCycleRented implements Command {
+public class GetCycleRented extends CommandAbstract {
 
-    Map<String, Object[]> commandArgs = new LinkedHashMap<>();
+    public GetCycleRented() {
+        this.inModuleId = 6;
+        this.commandName = "get cycle rented";
+        this.commandShort = "g c r";
+        this.commandInfo = "returns all rented cycles";
+    }
 
     public void execute(AppData data) {
 
@@ -21,35 +23,6 @@ public class GetCycleRented implements Command {
             }
         }
 
-    }
-
-    int inModuleId = 6;
-    String commandName = "get cycle rented";
-    String commandShort = "g c r";
-    String commandInfo = "returns all rented cycles";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
     }
 
 }

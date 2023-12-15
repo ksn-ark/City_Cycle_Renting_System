@@ -1,13 +1,12 @@
 package App;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import com.opencsv.*;
 
 import App.CommandHandlers.InputCommand;
 import App.Data.AppData;
@@ -42,7 +41,7 @@ public class Main {
 
         String projectRoot = System.getProperty("user.dir");
 
-        filePath = projectRoot + File.separator + "Storage/Cycles.csv";
+        filePath = projectRoot + File.separator + "Storage/Cycles.txt";
 
         System.out.println(ANSI_CYAN + "\n\n\tInitializing....,\n\t\t" + ANSI_RESET + ANSI_GREEN
                 + "Enter user & renting rate details.\n" + ANSI_RESET);
@@ -58,9 +57,7 @@ public class Main {
         while (true) {
             try {
 
-                CSVReader reader = new CSVReader(new FileReader(filePath));
-
-                List<String[]> rawRecords = reader.readAll();
+                List<String[]> rawRecords = readFile(filePath);
 
                 topId = Integer.parseInt(rawRecords.get(0)[0]);
 
@@ -76,8 +73,9 @@ public class Main {
                 inputCommand.handler(data);
 
             } catch (Exception error) {
+                error.printStackTrace();
                 System.out.println("Invalid file");
-                System.out.print("Enter valid csv file path or enter 'exit' to exit : ");
+                System.out.print("Enter valid txt file path or enter 'exit' to exit : ");
                 String userInput = scnr.nextLine();
                 if (userInput.equals("")) {
                     continue;
@@ -93,7 +91,8 @@ public class Main {
 
     }
 
-    static List<Cycle> readCycles(List<String[]> rawRecords) {
+    static List<Cycle> readCycles(List<String[]> rawRecords) { // helper function creates cycle object list from String
+                                                               // list
 
         boolean headerFlag = true;
         List<Cycle> Cycles = new ArrayList<>();
@@ -112,6 +111,30 @@ public class Main {
         }
 
         return Cycles;
+    }
+
+    public static List<String[]> readFile(String filePath) throws Exception { // helper funciton, reads file, returns
+                                                                              // List of String[]
+        // records
+        List<String[]> rawRecords = new ArrayList<>();
+
+        try {
+
+            String line;
+
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+
+            while ((line = br.readLine()) != null) {
+                rawRecords.add(line.split(","));
+            }
+
+            br.close();
+
+            return rawRecords;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public int getTopID() {

@@ -5,11 +5,13 @@ import java.util.Map;
 
 import App.Data.AppData;
 
-public interface Command {
+public interface Command { // common command interface
 
     Map<String, Object[]> commandArgs = new LinkedHashMap<>();
 
-    void execute(AppData data);
+    void execute(AppData data); // main execute method
+
+    // get methods for all command attributes
 
     public int getCommandId();
 

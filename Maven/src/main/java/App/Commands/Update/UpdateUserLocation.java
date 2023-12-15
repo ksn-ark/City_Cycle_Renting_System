@@ -1,23 +1,29 @@
 package App.Commands.Update;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.User;
 import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class UpdateUserLocation implements Command {
+public class UpdateUserLocation extends CommandAbstract {
 
-    static Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("new x-value", new Object[] { (Integer) 0, new RangeCheck(0) });
-            put("new y-value", new Object[] { (Integer) 0, new RangeCheck(0) });
-        }
-    };
+    public UpdateUserLocation() {
+        this.inModuleId = 4;
+        this.commandName = "update user location";
+        this.commandShort = "u u l";
+        this.commandInfo = "updates user location.";
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+            {
+                put("new x-value", new Object[] { (Integer) 0, new RangeCheck(0) });
+                put("new y-value", new Object[] { (Integer) 0, new RangeCheck(0) });
+            }
+        };
+    }
 
     public void execute(AppData data) {
 
@@ -50,32 +56,4 @@ public class UpdateUserLocation implements Command {
 
     }
 
-    int inModuleId = 4;
-    String commandName = "update user location";
-    String commandShort = "u u l";
-    String commandInfo = "updates user location.";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }

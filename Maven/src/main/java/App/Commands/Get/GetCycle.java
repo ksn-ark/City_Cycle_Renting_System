@@ -3,15 +3,19 @@ package App.Commands.Get;
 import App.Data.AppData;
 import App.Data.Cycle;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-import App.Commands.Command;
+import App.Commands.CommandAbstract;
 
-public class GetCycle implements Command {
+public class GetCycle extends CommandAbstract {
 
-    Map<String, Object[]> commandArgs = new LinkedHashMap<>();
+    public GetCycle() {
+
+        this.inModuleId = 5;
+        this.commandName = "get cycle";
+        this.commandShort = "g c";
+        this.commandInfo = "returns all records.";
+    }
 
     public void execute(AppData data) {
 
@@ -24,32 +28,4 @@ public class GetCycle implements Command {
         }
     }
 
-    int inModuleId = 5;
-    String commandName = "get cycle";
-    String commandShort = "g c";
-    String commandInfo = "returns all records.";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }

@@ -1,1 +1,7 @@
+# .gitignore
 
+# Ignore Maven project files
+Maven/pom.xml
+
+# Ignore Maven build-related files
+Maven/target/maven-status

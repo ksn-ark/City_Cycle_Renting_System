@@ -1,23 +1,33 @@
 package App.Commands.Adddel;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.Cycle;
+import App.Data.ModifyTextData;
 import App.InputHandler.*;
 
-public class AddCycle implements Command {
+public class AddCycle extends CommandAbstract {
 
-    Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("x-value", new Object[] { (Integer) 0, new RangeCheck(0) });
-            put("y-value", new Object[] { (Integer) 0, new RangeCheck(0) });
-            put("hoursRented", new Object[] { (Integer) 0, new RangeCheck(0) });
-            put("isRented", new Object[] { false });
-        }
-    };
+    public AddCycle() {
+
+        this.inModuleId = 1;
+        this.commandName = "add cycle";
+        this.commandShort = "a c";
+        this.commandInfo = "adds record with given values.";
+
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+
+            {
+                put("x-value", new Object[] { (Integer) 0, new RangeCheck(0) });
+                put("y-value", new Object[] { (Integer) 0, new RangeCheck(0) });
+                put("hoursRented", new Object[] { (Integer) 0, new RangeCheck(0) });
+                put("isRented", new Object[] { false });
+            }
+        };
+    }
 
     public void execute(AppData data) {
 
@@ -41,9 +51,9 @@ public class AddCycle implements Command {
 
             System.out.println("\n" + cycle.toString());
 
-            cycle.add(filePath); // cycle added to csv file
+            ModifyTextData.add(filePath, cycle); // cycle added to csv file
             data.addCycle(cycle); // cycle added to cycles list in the AppData object
-            cycle.addTopId(filePath, id); // id val in header of cycles.csv = last added cycle id + 1
+            ModifyTextData.addTopId(filePath); // id val in header is +1'd
 
         } catch (InvalidInputException e) {
             System.out.println("\nFailure, Invalid inputs\n");
@@ -56,34 +66,5 @@ public class AddCycle implements Command {
         }
 
         System.out.println("\nCycle Added");
-    }
-
-    int inModuleId = 1;
-    String commandName = "add cycle";
-    String commandShort = "a c";
-    String commandInfo = "adds record with given values.";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
     }
 }

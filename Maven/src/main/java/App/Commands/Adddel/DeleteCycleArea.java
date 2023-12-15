@@ -6,20 +6,28 @@ import App.InputHandler.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 
-public class DeleteCycleArea implements Command {
+public class DeleteCycleArea extends CommandAbstract {
 
-    Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("x-value", new Object[] { (Integer) 0, new RangeCheck(0) });
-            put("y-value", new Object[] { (Integer) 0, new RangeCheck(0) });
-            put("arSide-Value", new Object[] { (Integer) 1, new RangeCheck(1) });
-            put("arSide2-Value", new Object[] { "arSide-Value", new RangeCheck(1) });
-        }
-    };
+    public DeleteCycleArea() {
+
+        this.inModuleId = 3;
+        this.commandName = "delete cycle area";
+        this.commandShort = "d c a";
+        this.commandInfo = "delete records in rectangular area of length = arSide, breadth = arSide2 & bottom-left-corner= x,y.";
+
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+            {
+                put("x-value", new Object[] { (Integer) 0, new RangeCheck(0) });
+                put("y-value", new Object[] { (Integer) 0, new RangeCheck(0) });
+                put("arSide-Value", new Object[] { (Integer) 1, new RangeCheck(1) });
+                put("arSide2-Value", new Object[] { "arSide-Value", new RangeCheck(1) });
+            }
+        };
+    }
 
     public void execute(AppData data) {
 
@@ -51,7 +59,7 @@ public class DeleteCycleArea implements Command {
                 modifiedCycles.add(cycle);
             }
 
-            ReplaceData.replace(modifiedCycles, filePath);
+            ModifyTextData.replace(modifiedCycles, filePath);
             data.updateCycles(modifiedCycles);
 
             System.out.println("\n" + deletedCount + " Matching Records Successfully deleted");
@@ -67,32 +75,4 @@ public class DeleteCycleArea implements Command {
         }
     }
 
-    int inModuleId = 3;
-    String commandName = "delete cycle area";
-    String commandShort = "d c a";
-    String commandInfo = "delete records in rectangular area of length = arSide, breadth = arSide2 & bottom-left-corner= x,y.";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }

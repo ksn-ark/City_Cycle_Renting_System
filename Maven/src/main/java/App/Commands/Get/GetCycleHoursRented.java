@@ -2,24 +2,31 @@ package App.Commands.Get;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-
 import App.Commands.Command;
+import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.Cycle;
 import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class GetCycleHoursRented implements Command {
+public class GetCycleHoursRented extends CommandAbstract {
 
-    Map<String, Object[]> commandArgs = new LinkedHashMap<String, Object[]>() {
-        {
-            put("Max hours rented", new Object[] { "intRequired", new RangeCheck(0) });
-            put("Include rented?", new Object[] { false });
-            put("Min hours rented", new Object[] { 0, new RangeCheck(0) });
-        }
-    };
+    public GetCycleHoursRented() {
+
+        this.inModuleId = 8;
+        this.commandName = "get cycle hoursRented";
+        this.commandShort = "g c h";
+        this.commandInfo = "returns records by rented hours, range inclusive.";
+
+        this.commandArgs = new LinkedHashMap<String, Object[]>() {
+            {
+                put("Max hours rented", new Object[] { "intRequired", new RangeCheck(0) });
+                put("Include rented?", new Object[] { false });
+                put("Min hours rented", new Object[] { 0, new RangeCheck(0) });
+            }
+        };
+    }
 
     @Override
     public void execute(AppData data) {
@@ -60,32 +67,4 @@ public class GetCycleHoursRented implements Command {
         }
     }
 
-    int inModuleId = 8;
-    String commandName = "get cycle hoursRented";
-    String commandShort = "g c h";
-    String commandInfo = "returns records by rented hours, range inclusive.";
-
-    public int getCommandId() {
-        return inModuleId;
-    }
-
-    public String getCommandIdString() {
-        return Integer.toString(inModuleId);
-    }
-
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public String getCommandShort() {
-        return commandShort;
-    }
-
-    public String getCommandInfo() {
-        return commandInfo;
-    }
-
-    public Map<String, Object[]> getCommandArgs() {
-        return commandArgs;
-    }
 }
