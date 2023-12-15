@@ -1,3 +1,9 @@
+# **How to run**
+
+Open repository folder in terminal and enter:
+
+> java -cp target\classes\ App.Main
+
 # **Cycle Renting Database System**
 
 Java based renting database system for cycles in a city area (represented as an x-y plane).
