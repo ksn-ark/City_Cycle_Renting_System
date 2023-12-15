@@ -3,14 +3,13 @@ package App.Commands.Update;
 import java.util.LinkedHashMap;
 
 import App.Commands.Command;
-import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.User;
 import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class UpdateUserLocation extends CommandAbstract {
+public class UpdateUserLocation extends Command {
 
     public UpdateUserLocation() {
         this.inModuleId = 4;

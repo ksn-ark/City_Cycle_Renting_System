@@ -1,10 +1,10 @@
 package App.Commands.Get;
 
-import App.Commands.CommandAbstract;
+import App.Commands.Command;
 import App.Data.AppData;
 import App.Data.User;
 
-public class GetUserHoursRented extends CommandAbstract {
+public class GetUserHoursRented extends Command {
 
     public GetUserHoursRented() {
         this.inModuleId = 3;

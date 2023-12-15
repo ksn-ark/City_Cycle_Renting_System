@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import App.Commands.Command;
-import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.Cycle;
 import App.Data.ModifyTextData;
@@ -13,7 +12,7 @@ import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class UpdateCycleLocation extends CommandAbstract {
+public class UpdateCycleLocation extends Command {
 
     public UpdateCycleLocation() {
         this.inModuleId = 2;

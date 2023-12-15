@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import App.Commands.Command;
-import App.Commands.CommandAbstract;
 import App.Commands.Update.UpdateCycleRented;
 import App.Data.AppData;
 import App.Data.Cycle;
@@ -16,7 +15,7 @@ import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class RentCycleArea extends CommandAbstract {
+public class RentCycleArea extends Command {
 
     public RentCycleArea() {
 

@@ -8,9 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import App.Commands.Command;
-import App.Commands.CommandAbstract;
 
-public class DeleteCycleArea extends CommandAbstract {
+public class DeleteCycleArea extends Command {
 
     public DeleteCycleArea() {
 

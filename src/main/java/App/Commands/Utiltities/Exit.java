@@ -1,9 +1,9 @@
 package App.Commands.Utiltities;
 
-import App.Commands.CommandAbstract;
+import App.Commands.Command;
 import App.Data.AppData;
 
-public class Exit extends CommandAbstract { // exits the program
+public class Exit extends Command { // exits the program
 
     public Exit() {
         this.inModuleId = 2;

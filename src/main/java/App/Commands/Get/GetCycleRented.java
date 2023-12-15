@@ -1,10 +1,10 @@
 package App.Commands.Get;
 
-import App.Commands.CommandAbstract;
+import App.Commands.Command;
 import App.Data.AppData;
 import App.Data.Cycle;
 
-public class GetCycleRented extends CommandAbstract {
+public class GetCycleRented extends Command {
 
     public GetCycleRented() {
         this.inModuleId = 6;

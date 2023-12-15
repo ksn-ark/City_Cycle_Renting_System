@@ -3,13 +3,12 @@ package App.Commands.Adddel;
 import java.util.LinkedHashMap;
 
 import App.Commands.Command;
-import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.Data.Cycle;
 import App.Data.ModifyTextData;
 import App.InputHandler.*;
 
-public class AddCycle extends CommandAbstract {
+public class AddCycle extends Command {
 
     public AddCycle() {
 

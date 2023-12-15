@@ -6,9 +6,9 @@ import App.Data.User;
 
 import java.util.List;
 
-import App.Commands.CommandAbstract;
+import App.Commands.Command;
 
-public class GetUser extends CommandAbstract {
+public class GetUser extends Command {
 
     public GetUser() {
 

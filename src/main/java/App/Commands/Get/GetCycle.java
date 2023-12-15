@@ -5,9 +5,9 @@ import App.Data.Cycle;
 
 import java.util.List;
 
-import App.Commands.CommandAbstract;
+import App.Commands.Command;
 
-public class GetCycle extends CommandAbstract {
+public class GetCycle extends Command {
 
     public GetCycle() {
 

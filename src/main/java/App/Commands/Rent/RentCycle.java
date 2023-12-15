@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import App.Commands.Command;
-import App.Commands.CommandAbstract;
 import App.Commands.Update.UpdateCycleRented;
 import App.Data.AppData;
 import App.Data.Cycle;
@@ -14,7 +13,7 @@ import App.InputHandler.Input;
 import App.InputHandler.InvalidInputException;
 import App.InputHandler.RangeCheck;
 
-public class RentCycle extends CommandAbstract {
+public class RentCycle extends Command {
 
     public RentCycle() {
 

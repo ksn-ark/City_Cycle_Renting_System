@@ -5,10 +5,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 import App.Commands.Command;
-import App.Commands.CommandAbstract;
 import App.Data.AppData;
 
-public class Help extends CommandAbstract {
+public class Help extends Command {
 
     public Help() {
         this.inModuleId = 1;

@@ -3,11 +3,10 @@ package App.Commands.Update;
 import java.util.LinkedHashMap;
 
 import App.Commands.Command;
-import App.Commands.CommandAbstract;
 import App.Data.AppData;
 import App.InputHandler.*;
 
-public class UpdateRentPerHour extends CommandAbstract {
+public class UpdateRentPerHour extends Command {
 
     public UpdateRentPerHour() {
         this.inModuleId = 5;

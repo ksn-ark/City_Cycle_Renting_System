@@ -5,23 +5,44 @@ import java.util.Map;
 
 import App.Data.AppData;
 
-public interface Command { // common command interface
+public abstract class Command {
 
-    Map<String, Object[]> commandArgs = new LinkedHashMap<>();
+    public Map<String, Object[]> commandArgs = new LinkedHashMap<>();
 
-    void execute(AppData data); // main execute method
+    public int inModuleId;
+
+    public String commandName;
+
+    public String commandShort;
+
+    public String commandInfo;
+
+    public void execute(AppData data) {
+    }// main execute method
 
     // get methods for all command attributes
 
-    public int getCommandId();
+    public int getCommandId() {
+        return inModuleId;
+    }
 
-    public String getCommandIdString();
+    public String getCommandIdString() {
+        return Integer.toString(inModuleId);
+    }
 
-    public String getCommandName();
+    public String getCommandName() {
+        return commandName;
+    }
 
-    public String getCommandShort();
+    public String getCommandShort() {
+        return commandShort;
+    }
 
-    public String getCommandInfo();
+    public String getCommandInfo() {
+        return commandInfo;
+    }
 
-    public Map<String, Object[]> getCommandArgs();
+    public Map<String, Object[]> getCommandArgs() {
+        return commandArgs;
+    }
 }

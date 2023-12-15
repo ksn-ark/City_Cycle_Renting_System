@@ -5,11 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import App.Commands.Command;
-import App.Commands.CommandAbstract;
 import App.Data.*;
 import App.InputHandler.*;
 
-public class DeleteCycleId extends CommandAbstract {
+public class DeleteCycleId extends Command {
 
     public DeleteCycleId() {
 

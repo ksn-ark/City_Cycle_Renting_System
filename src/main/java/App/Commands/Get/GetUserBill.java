@@ -1,10 +1,10 @@
 package App.Commands.Get;
 
-import App.Commands.CommandAbstract;
+import App.Commands.Command;
 import App.Data.AppData;
 import App.Data.User;
 
-public class GetUserBill extends CommandAbstract {
+public class GetUserBill extends Command {
 
     public GetUserBill() {
         this.inModuleId = 4;
