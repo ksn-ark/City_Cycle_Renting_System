@@ -1,7 +1,6 @@
 package App;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -39,9 +38,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        String projectRoot = System.getProperty("user.dir");
-
-        filePath = projectRoot + File.separator + "Storage/Cycles.txt";
+        filePath = "./Storage/Cycles.txt";
 
         System.out.println(ANSI_CYAN + "\n\n\tInitializing....,\n\t\t" + ANSI_RESET + ANSI_GREEN
                 + "Enter user & renting rate details.\n" + ANSI_RESET);
